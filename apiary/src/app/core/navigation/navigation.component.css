@@ -29,13 +29,19 @@ img {
     border-radius: 3vh;
     list-style: none;
 }
+li.active {
+    background-color: #b4cff5;
+    position: relative;
+}
 
 .nav-list li a {
+    text-decoration: none;
+    color: white;
     font-family: Georgia, serif;
     cursor: pointer;
     padding: 2.5rem;
 }
-.nav-list li.active {
-    background-color: #b4cff5;
-    position: relative;
+
+.active {
+    color: rgb(115, 86, 69);
 }

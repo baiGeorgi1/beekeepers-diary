@@ -6,6 +6,8 @@ footer {
     flex-direction: row;
     background-color: rgb(69, 92, 115);
     flex: 0 0 100%;
+    position: absolute;
+    bottom: 0;
 }
 p {
     margin: 0 auto;

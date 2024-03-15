@@ -14,6 +14,6 @@ export class HomeComponent implements OnInit {
         this.globalLoader.showLoader();
         // setTimeout(() => {
         this.globalLoader.hideLoader();
-        //}, 2500);
+        // }, 2500);
     }
 }

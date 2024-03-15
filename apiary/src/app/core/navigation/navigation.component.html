@@ -2,18 +2,17 @@
     <img src="../../../assets/images/Miss-Bee-Haven-Logo.png" alt="no load" />
     <div class="navigation">
         <ul class="nav-list">
-            <li class="active">
-                <a
-                    (click)="navigateTo('details/')"
-                    class="nav-btn"
-                    routerLink="/"
-                    >Home</a
-                >
+            <li>
+                <a class="nav-btn" routerLink="/">Home</a>
             </li>
             <li><a>Dashboard</a></li>
-            <li><a>Register</a></li>
-            <li><a (click)="navigateTo('user/login')">Login</a></li>
-            <li><a>Logout</a></li>
+            <li>
+                <a routerLink="/user/login">Login</a>
+            </li>
+            <li>
+                <a routerLink="/user/register">Register</a>
+            </li>
+            <li appHighlight><a>Logout</a></li>
         </ul>
     </div>
 </nav>
