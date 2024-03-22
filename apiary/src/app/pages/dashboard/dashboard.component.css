@@ -1,0 +1,79 @@
+.container {
+    display: flex;
+    align-items: stretch;
+    height: calc(100vh - 134px);
+}
+.vertical-nav {
+    display: flex;
+    padding: 0.5em 0 0.5em 0.5em;
+    flex-direction: column;
+    background-color: rgb(148, 70, 14);
+    text-align: left;
+    position: sticky;
+    width: 150px;
+}
+.vertical-nav h5 {
+    padding-top: 1em;
+    text-align: center;
+    color: #f3cb5d;
+}
+
+.nav-list {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    padding-block: 1em;
+    list-style: none;
+    gap: 2em;
+}
+.nav-list li {
+    padding: 1em 2em;
+    margin-left: 2em;
+    border-radius: 100vw 0 0 100vw;
+}
+.nav-list li.active {
+    background-color: #f3cb5d;
+    position: relative;
+}
+li.active a {
+    color: rgb(148, 70, 14);
+}
+.active::before,
+.active::after {
+    --border-radius: 0.5em;
+
+    content: "";
+    position: absolute;
+    width: var(--border-radius);
+    height: var(--border-radius);
+    right: 0;
+}
+.active::before {
+    top: calc(var(--border-radius) * -1);
+    box-shadow: 5px 5px 0 5px #f3cb5d;
+    border-radius: 0 0 100vw 0;
+}
+.active::after {
+    bottom: calc(var(--border-radius) * -1);
+    box-shadow: 5px -5px 0px 5px #f3cb5d;
+    border-radius: 0 100vw 0 0;
+}
+.nav-list a {
+    color: #f3cb5d;
+    text-decoration: none;
+}
+
+.main {
+    position: relative;
+    display: flex;
+    background-color: #f3cb5d;
+    flex: 1 0 auto;
+}
+.empty {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(148, 70, 14);
+}
