@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { GlobalLoaderComponent } from "src/app/core/global-loader/global-loader.component";
 import { GlobalLoaderService } from "src/app/core/global-loader/global-loader.service";
 
 @Component({

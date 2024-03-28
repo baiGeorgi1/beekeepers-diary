@@ -1,17 +1,29 @@
 <div class="background">
     <div class="container">
         <div class="data">
-            <form>
+            <form #form="ngForm" (ngSubmit)="login(form)">
                 <div class="field">
                     <label for="username">Username:</label>
-                    <input type="username" placeholder="username" required />
+                    <input
+                        type="username"
+                        placeholder="username"
+                        ngModel
+                        #inputUsername="ngModel"
+                        required
+                    />
                     <span class="field helper"
                         >Atleast 8 characters needed!</span
                     >
                 </div>
                 <div class="field">
                     <label for="Name">Password:</label>
-                    <input type="password" placeholder="password" required />
+                    <input
+                        type="password"
+                        placeholder="password"
+                        ngModel
+                        #inputPassword="ngModel"
+                        required
+                    />
                     <span class="field helper"
                         >Atleast 8 characters needed !</span
                     >
