@@ -6,6 +6,10 @@
     background-size: cover;
     background-image: url("../../../assets/images/background.jpg");
 }
+h4 {
+    text-align: center;
+    padding-bottom: 0.6em;
+}
 
 .container {
     background-color: #a43d03;

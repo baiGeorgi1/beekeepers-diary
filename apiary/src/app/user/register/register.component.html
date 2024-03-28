@@ -11,10 +11,15 @@
                         placeholder="email"
                         formControlName="email"
                     />
-                    <span class="field helper"
-                        >Atleast 8 characters needed!</span
-                    >
                 </div>
+                <ng-container *ngIf="form.get('email')?.touched">
+                    <p
+                        *ngIf="form.get('email')?.errors?.['emailValidator']"
+                        class="error"
+                    >
+                        Not a valid email!
+                    </p>
+                </ng-container>
                 <div class="field">
                     <label for="username">Username:</label>
                     <input
@@ -51,8 +56,6 @@
                         />
                         <ng-container
                             *ngIf="
-                                form.get('passGroup')?.get('password')
-                                    ?.pristine ||
                                 form.get('passGroup')?.get('password')?.touched
                             "
                         >
