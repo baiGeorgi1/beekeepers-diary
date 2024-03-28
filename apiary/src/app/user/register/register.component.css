@@ -18,7 +18,7 @@
     border: 3px solid #9a3501;
     border-radius: 25px;
     box-shadow: 0px 0px 10px 1px rgb(253, 193, 60);
-    width: 500px;
+    width: 550px;
     height: auto;
     display: flex;
     justify-content: space-between;
@@ -30,6 +30,7 @@
 .data {
     display: flex;
     flex-direction: column;
+    width: 55%;
 }
 
 form {
@@ -43,6 +44,7 @@ label {
     padding-bottom: 0.2em;
 }
 input {
+    width: 95%;
     display: block;
     padding: 0.4em;
     border: 4px solid rgb(253, 193, 60);
@@ -50,12 +52,20 @@ input {
     outline: none;
 }
 .field {
-    padding: 0.5em;
+    padding: 0.2em;
 }
-.field .helper {
-    font-size: 0.9em;
-    font-style: italic;
-    opacity: 0.5;
+p.error {
+    margin: 0.5em;
+    padding: 0.2em;
+    border: 1px solid red;
+    background-color: red;
+    color: white;
+    border-radius: 20px;
+    font-size: 1.1em;
+    font-weight: 700;
+    text-align: center;
+
+    letter-spacing: 0.1em;
 }
 
 .form-btn {
@@ -73,6 +83,7 @@ input {
 
 .img-container {
     display: flex;
+    width: 40%;
     flex-direction: column;
     align-items: center;
     justify-content: center;

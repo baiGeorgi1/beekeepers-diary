@@ -1,40 +1,101 @@
 <div class="background">
     <div class="container">
         <div class="data">
-            <form>
+            <form [formGroup]="form" (ngSubmit)="register()">
                 <div class="field">
                     <label for="email">Email:</label>
-                    <input type="email" placeholder="email" required />
+                    <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="email"
+                        formControlName="email"
+                    />
                     <span class="field helper"
                         >Atleast 8 characters needed!</span
                     >
                 </div>
                 <div class="field">
                     <label for="username">Username:</label>
-                    <input type="username" placeholder="username" required />
-                    <span class="field helper"
-                        >Atleast 8 characters needed!</span
-                    >
-                </div>
-                <div class="field">
-                    <label for="Name">Password:</label>
-                    <input type="password" placeholder="password" required />
-                    <span class="field helper"
-                        >Atleast 8 characters needed !</span
-                    >
-                </div>
-                <div class="field">
-                    <label for="repeat-password">Repeat password:</label>
                     <input
-                        type="repeat-password"
-                        placeholder="repeat password"
+                        id="username"
+                        name="ussername"
+                        type="text"
+                        placeholder="username"
+                        formControlName="username"
                     />
-                    <span class="field helper">Pasword miss match!</span>
                 </div>
-                <button class="form-btn">Влез</button>
+                <ng-container *ngIf="form.get('username')?.touched">
+                    <p
+                        class="error"
+                        *ngIf="form.get('username')?.errors?.['minlength']"
+                    >
+                        Atleast 4 characters needed!
+                    </p>
+                    <p
+                        class="error"
+                        *ngIf="form.get('username')?.errors?.['required']"
+                    >
+                        Username is requred!
+                    </p>
+                </ng-container>
+                <ng-container formGroupName="passGroup">
+                    <div class="field">
+                        <label for="Name">Password:</label>
+                        <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            placeholder="********"
+                            formControlName="password"
+                        />
+                        <ng-container
+                            *ngIf="
+                                form.get('passGroup')?.get('password')
+                                    ?.pristine ||
+                                form.get('passGroup')?.get('password')?.touched
+                            "
+                        >
+                            <p
+                                class="error"
+                                *ngIf="form.get('passGroup')?.get('password')?.errors?.['required']"
+                            >
+                                Password is reqired
+                            </p>
+                            <p
+                                class="error"
+                                *ngIf="form.get('passGroup')?.get('password')?.errors?.['minlength']"
+                            >
+                                Atleast 4 characters needed!
+                            </p>
+                        </ng-container>
+                    </div>
+                    <div class="field">
+                        <label for="repeat-password">Repeat password:</label>
+                        <input
+                            id="repeat-password"
+                            name="repeat-password"
+                            type="repeat-password"
+                            placeholder="repeat password"
+                            formControlName="repeat-password"
+                        />
+                        <span class="field helper">Pasword miss match!</span>
+                    </div>
+                </ng-container>
+                <button
+                    class="form-btn"
+                    [disabled]="form.invalid"
+                    [style]="{ backgroundColor: form.invalid ? '#9a3501' : '' }"
+                >
+                    Регистрация
+                </button>
             </form>
         </div>
         <div class="img-container">
+            <h4 *ngIf="form.invalid ? mandatoryFields : !mandatoryFields">
+                Всички полета са задължителни
+            </h4>
+
             <img src="../../../assets/images/bee-guard.png" alt="" />
             <a routerLink="/user/login">Имам регистрация!</a>
         </div>
