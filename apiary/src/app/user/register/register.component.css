@@ -58,6 +58,17 @@ input {
 .field {
     padding: 0.2em;
 }
+h4.error {
+    width: 90%;
+    margin: 0.5em;
+    padding: 0.5em;
+    border: 1px solid red;
+    background-color: red;
+    color: white;
+    border-radius: 20px;
+
+    text-align: center;
+}
 p.error {
     margin: 0.5em;
     padding: 0.2em;
@@ -68,8 +79,6 @@ p.error {
     font-size: 1.1em;
     font-weight: 700;
     text-align: center;
-
-    letter-spacing: 0.1em;
 }
 
 .form-btn {

@@ -1,7 +1,9 @@
 import { Component } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 import { emailValidator } from "src/app/shared/utils/email-validator";
 import { matchPasswords } from "src/app/shared/utils/match-passwords";
+import { UserService } from "src/app/user.service";
 
 @Component({
     selector: "app-register",
@@ -17,23 +19,43 @@ export class RegisterComponent {
         passGroup: this.fb.group(
             {
                 password: ["", [Validators.required, Validators.minLength(4)]],
-                "repeat-password": [
+                repeatPassword: [
                     "",
                     [Validators.required, Validators.minLength(4)],
                 ],
             },
             {
-                validators: [matchPasswords("password", "repeat-password")],
+                validators: [matchPasswords("password", "repeatPassword")],
             },
-            // TODO Validators
         ),
     });
-    constructor(private fb: FormBuilder) {}
+    constructor(
+        private fb: FormBuilder,
+        private userService: UserService,
+        private router: Router,
+    ) {}
 
     register(): void {
         if (this.form.invalid) {
             return;
         }
-        console.log(this.form.value);
+        // console.log(this.form.value);
+        const {
+            email,
+            username,
+            passGroup: { password, repeatPassword } = {},
+        } = this.form.value;
+
+        this.userService.userSubscribtion = this.userService
+            .register(email!, username!, password!, repeatPassword!)
+            .subscribe({
+                next: (userData) => {
+                    this.userService.setUser(userData);
+                    this.router.navigate(["/dashboard"]);
+                },
+                error: () => {
+                    //todo
+                },
+            });
     }
 }

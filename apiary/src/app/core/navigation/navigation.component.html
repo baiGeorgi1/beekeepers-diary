@@ -5,14 +5,24 @@
             <li>
                 <a class="nav-btn" routerLink="/">Home</a>
             </li>
-            <li><a routerLink="/dashboard">Dashboard</a></li>
-            <li>
-                <a routerLink="/user/login">Login</a>
-            </li>
-            <li>
-                <a routerLink="/user/register">Register</a>
-            </li>
-            <li (click)="logout()"><a>Logout</a></li>
+            <ng-container *ngIf="isLoggeedIn">
+                <li><a routerLink="/dashboard">Dashboard</a></li>
+
+                <li>
+                    <!-- TODO make path -->
+                    <a routerLink="#">{{ username }}'s Profile</a>
+                </li>
+                <li (click)="logout()"><a>Logout</a></li>
+            </ng-container>
+            <ng-container *ngIf="!isLoggeedIn">
+                <li>
+                    <a routerLink="/users/login">Login</a>
+                </li>
+
+                <li>
+                    <a routerLink="/users/register">Register</a>
+                </li>
+            </ng-container>
         </ul>
     </div>
 </nav>

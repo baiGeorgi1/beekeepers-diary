@@ -1,33 +1,44 @@
 <div class="background">
     <div class="container">
         <div class="data">
-            <form #form="ngForm" (ngSubmit)="login(form)">
+            <form [formGroup]="form" (ngSubmit)="login()">
                 <div class="field">
-                    <label for="username">Username:</label>
+                    <label for="email">Email:</label>
                     <input
-                        type="username"
-                        placeholder="username"
-                        ngModel
-                        #inputUsername="ngModel"
-                        required
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="email"
+                        formControlName="email"
                     />
-                    <span class="field helper"
-                        >Atleast 8 characters needed!</span
-                    >
                 </div>
+                <ng-container *ngIf="form.get('email')?.touched"
+                    ><p
+                        *ngIf="form.get('email')?.errors?.['required']"
+                        class="error"
+                    >
+                        Email is required!
+                    </p></ng-container
+                >
+
                 <div class="field">
                     <label for="Name">Password:</label>
                     <input
+                        id="password"
+                        name="password"
                         type="password"
-                        placeholder="password"
-                        ngModel
-                        #inputPassword="ngModel"
-                        required
+                        placeholder="********"
+                        formControlName="password"
                     />
-                    <span class="field helper"
-                        >Atleast 8 characters needed !</span
-                    >
                 </div>
+                <ng-container *ngIf="form.get('password')?.touched"
+                    ><p
+                        *ngIf="form.get('password')?.errors?.['required']"
+                        class="error"
+                    >
+                        Password is required!
+                    </p></ng-container
+                >
 
                 <button class="form-btn">Влез</button>
             </form>

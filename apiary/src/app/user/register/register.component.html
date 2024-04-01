@@ -14,11 +14,17 @@
                 </div>
                 <ng-container *ngIf="form.get('email')?.touched">
                     <p
-                        *ngIf="form.get('email')?.errors?.['emailValidator']"
                         class="error"
+                        *ngIf="form.get('email')?.errors?.['emailValidator']"
                     >
-                        Not a valid email!
+                        Email is not valid!
                     </p>
+                    <!-- <p
+                        class="error"
+                        *ngIf="form.get('email')?.errors?.['required']"
+                    >
+                        Email is required!
+                    </p> -->
                 </ng-container>
                 <div class="field">
                     <label for="username">Username:</label>
@@ -37,12 +43,12 @@
                     >
                         Atleast 4 characters needed!
                     </p>
-                    <p
+                    <!-- <p
                         class="error"
                         *ngIf="form.get('username')?.errors?.['required']"
                     >
                         Username is requred!
-                    </p>
+                    </p> -->
                 </ng-container>
                 <ng-container formGroupName="passGroup">
                     <div class="field">
@@ -59,12 +65,12 @@
                                 form.get('passGroup')?.get('password')?.touched
                             "
                         >
-                            <p
+                            <!-- <p
                                 class="error"
                                 *ngIf="form.get('passGroup')?.get('password')?.errors?.['required']"
                             >
                                 Password is reqired
-                            </p>
+                            </p> -->
                             <p
                                 class="error"
                                 *ngIf="form.get('passGroup')?.get('password')?.errors?.['minlength']"
@@ -74,15 +80,27 @@
                         </ng-container>
                     </div>
                     <div class="field">
-                        <label for="repeat-password">Repeat password:</label>
+                        <label for="repeatPassword">Repeat password:</label>
                         <input
-                            id="repeat-password"
-                            name="repeat-password"
-                            type="repeat-password"
+                            id="repeatPassword"
+                            name="repeatPassword"
+                            type="password"
                             placeholder="repeat password"
-                            formControlName="repeat-password"
+                            formControlName="repeatPassword"
                         />
-                        <span class="field helper">Pasword miss match!</span>
+                        <ng-container
+                            *ngIf="
+                                form.get('passGroup')?.get('repeatPassword')
+                                    ?.touched
+                            "
+                        >
+                            <p
+                                class="error"
+                                *ngIf="form.get('passGroup')?.errors?.['matchPasswords'] || form.get('passGroup')?.get('repeatPassword')?.errors?.['required']"
+                            >
+                                Repeated pasword does't match password!
+                            </p>
+                        </ng-container>
                     </div>
                 </ng-container>
                 <button
@@ -95,7 +113,10 @@
             </form>
         </div>
         <div class="img-container">
-            <h4 *ngIf="form.invalid ? mandatoryFields : !mandatoryFields">
+            <h4
+                class="error"
+                *ngIf="form.invalid ? mandatoryFields : !mandatoryFields"
+            >
                 Всички полета са задължителни
             </h4>
 

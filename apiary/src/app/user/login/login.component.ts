@@ -1,6 +1,9 @@
-import { Component } from "@angular/core";
-import { NgForm } from "@angular/forms";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { FormBuilder, Validators } from "@angular/forms";
+import { Title } from "@angular/platform-browser";
+
 import { Router } from "@angular/router";
+import { emailValidator } from "src/app/shared/utils/email-validator";
 import { UserService } from "src/app/user.service";
 
 @Component({
@@ -8,14 +11,43 @@ import { UserService } from "src/app/user.service";
     templateUrl: "./login.component.html",
     styleUrls: ["./login.component.css"],
 })
-export class LoginComponent {
-    constructor(private userService: UserService, private router: Router) {}
-    login(form: NgForm) {
-        console.log(form.value);
-        if (form.invalid) {
+export class LoginComponent implements OnInit, OnDestroy {
+    form = this.fb.group({
+        email: ["", [Validators.required, emailValidator()]],
+        password: ["", [Validators.required]],
+    });
+
+    constructor(
+        private title: Title,
+        private fb: FormBuilder,
+        private userService: UserService,
+        private router: Router,
+    ) {}
+
+    ngOnInit(): void {
+        this.title.setTitle("Login");
+    }
+
+    login(): void {
+        console.log(this.form.value);
+        if (this.form.invalid) {
             return;
         }
-        this.userService.login();
-        this.router.navigate(["/dashboard"]);
+        const { email, password } = this.form.value;
+        this.userService.userSubscribtion = this.userService
+            .login(email!, password!)
+            .subscribe({
+                next: (userData) => {
+                    this.userService.setUser(userData);
+                    this.router.navigate(["/dashboard"]);
+                },
+                //TODO
+                error: () => {},
+            });
+    }
+    ngOnDestroy(): void {
+        if (this.userService.userSubscribtion != undefined) {
+            this.userService.userSubscribtion.unsubscribe();
+        }
     }
 }

@@ -14,11 +14,23 @@ export class NavigationComponent {
         return this.userService.isLogged;
     }
     get username(): string {
-        return this.userService.user?.username || "";
+        return this.userService.getUser()?.email || "";
     }
 
     logout() {
-        this.userService.logout();
-        this.router.navigate(["/home"]);
+        this.userService.logout().subscribe({
+            next: () => {
+                this.userService.clearUser();
+                this.router.navigate(["/login"]);
+            },
+            error: () => {
+                this.userService.clearUser();
+                this.router.navigate(["/login"]);
+            },
+            complete: () => {
+                this.userService.clearUser();
+                this.router.navigate(["/home"]);
+            },
+        });
     }
 }

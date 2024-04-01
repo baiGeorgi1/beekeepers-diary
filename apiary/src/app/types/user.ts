@@ -10,7 +10,9 @@ export interface User {
     tasks: Tasks[];
 }
 export interface UserForAuth {
+    email: string;
     username: string;
     password: string;
     id: string;
+    accessToken: string;
 }
