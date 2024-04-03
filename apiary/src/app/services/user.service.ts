@@ -1,5 +1,9 @@
-import { Injectable, OnDestroy } from "@angular/core";
-import { UserForAuth } from "./types/user";
+import {
+    Injectable,
+    OnDestroy,
+    ɵpublishDefaultGlobalUtils,
+} from "@angular/core";
+import { UserForAuth } from "../types/user";
 import { BehaviorSubject, Observable, Subscription, tap } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment.development";
@@ -18,7 +22,12 @@ export class UserService implements OnDestroy {
     userSubscribtion: Subscription;
 
     get isLogged(): boolean {
-        return !!this.user;
+        const token = localStorage.getItem(USER_KEY);
+        if (token) {
+            return true;
+        }
+        // return !!this.user;
+        return false;
     }
 
     constructor(private http: HttpClient) {

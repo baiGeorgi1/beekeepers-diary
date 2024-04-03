@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { UserService } from "src/app/user.service";
+import { UserService } from "src/app/services/user.service";
 
 @Component({
     selector: "app-authenticate",
@@ -15,7 +15,7 @@ export class AuthenticateComponent implements OnInit {
     ngOnInit(): void {
         this.userService.getUser().subscribe({
             next: () => {
-                this.isAuthenticated = false;
+                this.isAuthenticated = true;
             },
             error: () => {
                 this.isAuthenticated = false;

@@ -12,10 +12,8 @@ import { SharedModule } from "./shared/shared.module";
 import { PagesModule } from "./pages/pages.module";
 
 import { DirectivesModule } from "./directives/directives.module";
-// import { AppInterceptor } from "./app.interceptor";
 import { AuthenticateComponent } from "./authenticate/authenticate.component";
 import { appInterceptorProvider } from "./app.interceptor";
-// import { appInterceptorProvider } from "./app.interceptor";
 
 @NgModule({
     declarations: [AppComponent, AuthenticateComponent],

@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-import { UserService } from "src/app/user.service";
+import { UserService } from "src/app/services/user.service";
 
 @Component({
     selector: "app-navigation",
@@ -14,7 +14,7 @@ export class NavigationComponent {
         return this.userService.isLogged;
     }
     get username(): string {
-        return this.userService.getUser()?.email || "";
+        return this.userService.getUser()?.username || "";
     }
 
     logout() {

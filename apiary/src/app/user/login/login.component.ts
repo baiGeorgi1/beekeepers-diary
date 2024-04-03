@@ -4,7 +4,7 @@ import { Title } from "@angular/platform-browser";
 
 import { Router } from "@angular/router";
 import { emailValidator } from "src/app/shared/utils/email-validator";
-import { UserService } from "src/app/user.service";
+import { UserService } from "src/app/services/user.service";
 
 @Component({
     selector: "app-login",
@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
 
     login(): void {
-        console.log(this.form.value);
+        // console.log(this.form.value);
         if (this.form.invalid) {
             return;
         }

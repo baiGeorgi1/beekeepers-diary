@@ -2,7 +2,7 @@ import { Hives } from "./hives";
 import { Tasks } from "./tasks";
 
 export interface User {
-    id: string;
+    _id: string;
     email: string;
     username: string;
     password: string;
@@ -13,6 +13,6 @@ export interface UserForAuth {
     email: string;
     username: string;
     password: string;
-    id: string;
+    _id: string;
     accessToken: string;
 }

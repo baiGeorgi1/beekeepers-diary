@@ -8,7 +8,7 @@ import {
 } from "@angular/common/http";
 import { Observable } from "rxjs";
 
-import { UserService } from "./user.service";
+import { UserService } from "./services/user.service";
 
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
@@ -28,7 +28,7 @@ export class AppInterceptor implements HttpInterceptor {
                 },
             });
         }
-        console.log(accessToken);
+        // console.log(accessToken);
 
         req = req.clone({
             // url: req.url.replace(this.API, userURL),
@@ -37,8 +37,6 @@ export class AppInterceptor implements HttpInterceptor {
                 "Content-Type": "application/json",
             },
         });
-
-        console.log(req);
 
         return next.handle(req);
     }
