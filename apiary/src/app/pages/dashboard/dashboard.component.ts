@@ -1,4 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import {
+    AfterViewInit,
+    Component,
+    ElementRef,
+    OnInit,
+    ViewChild,
+    ViewChildren,
+} from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { GlobalLoaderService } from "src/app/core/global-loader/global-loader.service";
 import { ItemService } from "src/app/services/item.service";
@@ -12,12 +19,15 @@ import { Hives } from "src/app/types/hives";
 })
 export class DashboardComponent implements OnInit {
     hives: Hives[] = [];
+    // todo navigation
+    isActive: boolean = false;
 
     get userId(): string {
         return this.userService.getUser()._id || "";
     }
 
     constructor(
+        private elRef: ElementRef,
         private globalLoader: GlobalLoaderService,
         private userService: UserService,
         private api: ItemService,
@@ -33,7 +43,8 @@ export class DashboardComponent implements OnInit {
                 console.log("ITEMS", items, this.userId);
             },
             complete: () => {
-                // console.log("Completed: ", this.hives);
+                //TODO
+                console.log("Completed: ", this.hives);
             },
         });
         // .subscribe((items) => {
@@ -42,7 +53,21 @@ export class DashboardComponent implements OnInit {
         //         console.log(item.frames);
 
         //         // find((s)=>{s===this.userId})
-        //     });
+        //     })
         // });
     }
+    // @ViewChildren("el") a!: ElementRef;
+    // ngAfterViewInit(): void {
+    //     console.log("Here");
+
+    //     this.a.nativeElement.setAttribute("active");
+    // }
+
+    // isActiveFn(event: object) {
+    //     console.log(event);
+    //     const res = this.elRef.parenElement.setAttribute
+    //     console.log(res);
+
+    //     //event.parentElement.srcElement.classList.add("active");
+    // }
 }

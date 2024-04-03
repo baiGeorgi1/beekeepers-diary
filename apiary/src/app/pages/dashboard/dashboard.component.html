@@ -3,11 +3,15 @@
         <h5>Моят пчелин</h5>
         <div class="navigation">
             <ul class="nav-list">
-                <li class="active">
-                    <a routerLink="#">Инфо</a>
+                <li id="info" class="active">
+                    <a routerLink="/">Инфо</a>
                 </li>
-                <li c><a routerLink="#">Добави кошер</a></li>
                 <li>
+                    <a #el id="add-hive" routerLink="/dashboard"
+                        >Добави кошер</a
+                    >
+                </li>
+                <li id="tasks">
                     <a routerLink="#">Задачи</a>
                 </li>
                 <li>
