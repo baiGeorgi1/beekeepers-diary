@@ -1,51 +1,66 @@
 <div class="container">
-    <div class="vertical-nav">
-        <h5>Моят пчелин</h5>
-        <div class="navigation">
-            <ul class="nav-list">
-                <li class="active">
-                    <a routerLink="#">Инфо</a>
-                </li>
-                <li c><a routerLink="#">Добави кошер</a></li>
-                <li>
-                    <a routerLink="#">Задачи</a>
-                </li>
-                <li>
-                    <a routerLink="#">Бележки</a>
-                </li>
-                <li><a routerLink="#">A</a></li>
-            </ul>
-        </div>
+  <div class="vertical-nav">
+    <h5>Моят пчелин</h5>
+    <div class="navigation">
+      <ul class="nav-list">
+        <li class="active">
+          <a (click)="clicked($event)" class="vert-nav" routerLink="/dashboard"
+            >Инфо</a
+          >
+        </li>
+        <!-- <li > -->
+        <li>
+          <a (click)="clicked($event)" class="vert-nav" routerLink="/dashboard"
+            >Добави кошер</a
+          >
+        </li>
+        <li>
+          <a (click)="clicked($event)" class="vert-nav" routerLink="/dashboard"
+            >Задачи</a
+          >
+        </li>
+        <li>
+          <a (click)="clicked($event)" class="vert-nav" routerLink="/dashboard"
+            >Бележки</a
+          >
+        </li>
+        <li>
+          <a (click)="clicked($event)" class="vert-nav" routerLink="/dashboard"
+            >A</a
+          >
+        </li>
+      </ul>
     </div>
-    <div class="main">
-        <div *ngIf="" class="empty">
-            <h1>Все още нямате добавени кошери!</h1>
-        </div>
-        <div class="quality-box">
-            <figure class="item-fig">
-                <img
-                    class="item-img"
-                    src="../../../assets/images/hive_grande.png"
-                    alt="#"
-                />
-                <h5>Farar</h5>
-                <p>No:{{ hives }}</p>
-                <p>{{ hives }}</p>
-                <button class="form-btn">Виж</button>
-            </figure>
-        </div>
-        <div *ngFor="let hive of hives" class="quality-box">
-            <figure class="item-fig">
-                <img
-                    class="item-img"
-                    src="../../../assets/images/hive_grande.png"
-                    alt="#"
-                />
-                <h5>{{ hive.type }}</h5>
-                <p>No:</p>
-                <p>{{ hive.frames }} рамки</p>
-                <button class="form-btn">Виж</button>
-            </figure>
-        </div>
+  </div>
+  <div class="main">
+    <div *ngIf="" class="empty">
+      <h1>Все още нямате добавени кошери!</h1>
     </div>
+    <div class="quality-box">
+      <figure class="item-fig">
+        <img
+          class="item-img"
+          src="../../../assets/images/hive_grande.png"
+          alt="#"
+        />
+        <h5>Farar</h5>
+        <p>No:{{ hives }}</p>
+        <p>{{ hives }}</p>
+        <button class="form-btn">Виж</button>
+      </figure>
+    </div>
+    <div *ngFor="let hive of hives" class="quality-box">
+      <figure class="item-fig">
+        <img
+          class="item-img"
+          src="../../../assets/images/hive_grande.png"
+          alt="#"
+        />
+        <h5>{{ hive.type }}</h5>
+        <p>No:</p>
+        <p>{{ hive.frames }} рамки</p>
+        <button class="form-btn">Виж</button>
+      </figure>
+    </div>
+  </div>
 </div>
