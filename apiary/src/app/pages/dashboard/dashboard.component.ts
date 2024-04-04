@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 
 import { GlobalLoaderService } from 'src/app/core/global-loader/global-loader.service';
 import { ItemService } from 'src/app/services/item.service';
@@ -12,7 +12,9 @@ import { Hives } from 'src/app/types/hives';
 })
 export class DashboardComponent implements OnInit {
   hives: Hives[] = [];
-  currentPage: boolean = true;
+  isInfo: boolean = true;
+  isCreateHive: boolean = true;
+  isTask: boolean = true;
 
   get userId(): string {
     return this.userService.getUser()._id || '';
@@ -21,7 +23,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private globalLoader: GlobalLoaderService,
     private userService: UserService,
-    private api: ItemService
+    private api: ItemService // private elRef: ElementRef, // private render: Renderer2
   ) {}
   ngOnInit(): void {
     // this.globalLoader.showLoader();
@@ -31,7 +33,7 @@ export class DashboardComponent implements OnInit {
 
     const result = this.api.getItems(this.userId).subscribe({
       next: (items: Hives[]) => {
-        console.log('ITEMS', items, this.userId);
+        // console.log('ITEMS', items, this.userId);
       },
       complete: () => {
         // console.log("Completed: ", this.hives);
@@ -44,11 +46,32 @@ export class DashboardComponent implements OnInit {
     const vertNavBtns = document.querySelectorAll('.vert-nav');
     for (let i = 0; i < vertNavBtns.length; i++) {
       const item = vertNavBtns[i].parentElement;
-      console.log(item);
+      // console.log(item);
       item!.classList.remove('active');
     }
     target.classList.add('active');
-    console.log(target);
-    console.log(vertNavBtns);
+    const id = target.id;
+
+    switch (id) {
+      case 'info':
+        this.isInfo = true;
+        this.isCreateHive = false;
+        this.isTask = false;
+        break;
+      case 'create-hive':
+        this.isInfo = false;
+        this.isCreateHive = true;
+        this.isTask = false;
+
+        break;
+      case 'tasks':
+        this.isInfo = false;
+        this.isCreateHive = false;
+        this.isTask = true;
+        break;
+
+      default:
+        break;
+    }
   }
 }

@@ -3,26 +3,19 @@
     <h5>Моят пчелин</h5>
     <div class="navigation">
       <ul class="nav-list">
-        <li class="active">
-          <a (click)="clicked($event)" class="vert-nav" routerLink="/dashboard"
-            >Инфо</a
-          >
+        <li id="info" class="active">
+          <a (click)="clicked($event)" class="vert-nav">Инфо</a>
         </li>
 
-        <li>
-          <a
-            (click)="clicked($event)"
-            class="vert-nav"
-            routerLink="/dashboard/add-hive"
-            >Добави кошер</a
-          >
+        <li id="create-hive">
+          <a (click)="clicked($event)" class="vert-nav">Добави кошер</a>
         </li>
-        <li>
+        <li id="tasks">
           <a (click)="clicked($event)" class="vert-nav" routerLink="/dashboard"
             >Задачи</a
           >
         </li>
-        <li>
+        <!-- <li>
           <a (click)="clicked($event)" class="vert-nav" routerLink="/dashboard"
             >Бележки</a
           >
@@ -31,12 +24,12 @@
           <a (click)="clicked($event)" class="vert-nav" routerLink="/dashboard"
             >A</a
           >
-        </li>
+        </li> -->
       </ul>
     </div>
   </div>
   <div class="content">
-    <div class="main">
+    <div *ngIf="isInfo" class="main">
       <div *ngIf="" class="empty">
         <h1>Все още нямате добавени кошери!</h1>
       </div>
@@ -68,8 +61,10 @@
       </div>
     </div>
 
-    <!-- <div class="add-hive">
+    <div *ngIf="isCreateHive" class="add-hive">
       <p>add-hive works!</p>
-    </div> -->
+    </div>
+
+    <div *ngIf="isTask" class="task"><p>TAskS</p></div>
   </div>
 </div>
