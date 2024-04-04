@@ -16,11 +16,6 @@ export class ItemService {
   getItems(userId: string): Observable<Hives[]> {
     //TODO
     console.log('HERE', userId);
-    return this.http.get<Hives[]>(`${environment.itemURL}/hives`);
-    // this.result$ = this.http.get<Hives[]>(`${itemURL}/hives`).subscribe({
-    //     next: (item) => {
-    //         console.log(item);
-    //     },
-    // });
+    return this.http.get<Hives[]>(`${itemURL}/hives`);
   }
 }
