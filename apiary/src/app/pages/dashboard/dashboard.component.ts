@@ -12,6 +12,7 @@ import { Hives } from 'src/app/types/hives';
 })
 export class DashboardComponent implements OnInit {
   hives: Hives[] = [];
+  currentPage: boolean = true;
 
   get userId(): string {
     return this.userService.getUser()._id || '';

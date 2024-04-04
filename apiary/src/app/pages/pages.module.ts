@@ -6,9 +6,10 @@ import { SharedModule } from "../shared/shared.module";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { PageRoutingModule } from "./page-routing.module";
 import { NotFoundComponent } from './not-found/not-found.component';
+import { AddHiveComponent } from './add-hive/add-hive.component';
 
 @NgModule({
-    declarations: [HomeComponent, DashboardComponent, NotFoundComponent],
+    declarations: [HomeComponent, DashboardComponent, NotFoundComponent, AddHiveComponent],
     imports: [CommonModule, SharedModule, PageRoutingModule],
 })
 export class PagesModule {}
