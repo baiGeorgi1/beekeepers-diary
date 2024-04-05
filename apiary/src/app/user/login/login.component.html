@@ -1,51 +1,45 @@
 <div class="background">
-    <div class="container">
-        <div class="data">
-            <form [formGroup]="form" (ngSubmit)="login()">
-                <div class="field">
-                    <label for="email">Email:</label>
-                    <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="email"
-                        formControlName="email"
-                    />
-                </div>
-                <ng-container *ngIf="form.get('email')?.touched"
-                    ><p
-                        *ngIf="form.get('email')?.errors?.['required']"
-                        class="error"
-                    >
-                        Email is required!
-                    </p></ng-container
-                >
-
-                <div class="field">
-                    <label for="Name">Password:</label>
-                    <input
-                        id="password"
-                        name="password"
-                        type="password"
-                        placeholder="********"
-                        formControlName="password"
-                    />
-                </div>
-                <ng-container *ngIf="form.get('password')?.touched"
-                    ><p
-                        *ngIf="form.get('password')?.errors?.['required']"
-                        class="error"
-                    >
-                        Password is required!
-                    </p></ng-container
-                >
-
-                <button class="form-btn">Влез</button>
-            </form>
+  <div class="container">
+    <div class="data">
+      <form [formGroup]="form" (ngSubmit)="login()">
+        <div class="field">
+          <label for="email">Email:</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="email"
+            formControlName="email"
+          />
         </div>
-        <div class="img-container">
-            <img src="../../../assets/images/bee-guard.png" alt="" />
-            <a routerLink="/user/register">Нямам регистрация!</a>
+        <ng-container *ngIf="form.get('email')?.touched"
+          ><p *ngIf="form.get('email')?.errors?.['required']" class="error">
+            Email is required!
+          </p></ng-container
+        >
+
+        <div class="field">
+          <label for="Name">Password:</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="********"
+            formControlName="password"
+          />
         </div>
+        <ng-container *ngIf="form.get('password')?.touched"
+          ><p *ngIf="form.get('password')?.errors?.['required']" class="error">
+            Password is required!
+          </p></ng-container
+        >
+
+        <button class="form-btn">Влез</button>
+      </form>
     </div>
+    <div class="img-container">
+      <img src="../../../assets/images/bee-guard.png" alt="" />
+      <a routerLink="/users/register">Нямам регистрация!</a>
+    </div>
+  </div>
 </div>

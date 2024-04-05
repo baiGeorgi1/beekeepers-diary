@@ -13,6 +13,7 @@ a {
   height: 100%;
   flex: 1 1 100%;
 }
+/* Vertical-nav */
 .vertical-nav {
   display: flex;
   padding: 0.5em 0 0.5em 0.5em;
@@ -74,8 +75,10 @@ li.active a {
   color: #f3cb5d;
   text-decoration: none;
 }
-
-.main {
+/* Info,add-hive & tasks */
+.main,
+.add-hive,
+.tasks {
   position: relative;
   display: flex;
   gap: 2em;
@@ -85,6 +88,70 @@ li.active a {
   flex: 1 0 auto;
   height: 100%;
 }
+/* add-hive */
+.hive-container {
+  background-color: #a43d03;
+  color: #ffe4b6;
+  margin: 1em auto;
+  padding: 1em;
+  border: 3px solid #9a3501;
+  border-radius: 25px;
+  box-shadow: 0px 0px 10px 1px rgb(253, 193, 60);
+  width: 500px;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+}
+.hive-container a {
+  padding: 1em;
+  text-align: center;
+}
+.data {
+  justify-content: center;
+  display: flex;
+  width: 450px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+label {
+  display: block;
+  font-weight: bold;
+  line-height: 1;
+  padding-bottom: 0.2em;
+}
+input {
+  display: block;
+  padding: 0.4em;
+  border: 4px solid rgb(253, 193, 60);
+  border-radius: 0.5em;
+  outline: none;
+}
+.field {
+  padding: 0.5em;
+}
+.field .helper {
+  font-size: 0.9em;
+  font-style: italic;
+  opacity: 0.5;
+}
+.form-btn {
+  width: 70%;
+  justify-self: center;
+  margin: 1em auto;
+  padding: 1em;
+  border: 2px solid #9a3501;
+  box-shadow: 0 0 5px 1px #e9a02e;
+  border-radius: 25px;
+  background-color: #e9a02e;
+  color: #a43d03;
+  font-size: 0.8em;
+  font-weight: 700;
+}
+/* end of add-hive */
+
 .empty {
   position: absolute;
   top: 50%;

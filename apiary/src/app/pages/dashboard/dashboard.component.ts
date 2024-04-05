@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 import { GlobalLoaderService } from 'src/app/core/global-loader/global-loader.service';
 import { ItemService } from 'src/app/services/item.service';
@@ -13,8 +14,10 @@ import { Hives } from 'src/app/types/hives';
 export class DashboardComponent implements OnInit {
   hives: Hives[] = [];
   isInfo: boolean = true;
-  isCreateHive: boolean = true;
-  isTask: boolean = true;
+  isCreateHive: boolean = false;
+  isTask: boolean = false;
+
+  form = this.fb.group({});
 
   get userId(): string {
     return this.userService.getUser()._id || '';
@@ -23,7 +26,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private globalLoader: GlobalLoaderService,
     private userService: UserService,
-    private api: ItemService // private elRef: ElementRef, // private render: Renderer2
+    private api: ItemService,
+    private fb: FormBuilder
   ) {}
   ngOnInit(): void {
     // this.globalLoader.showLoader();
@@ -40,6 +44,7 @@ export class DashboardComponent implements OnInit {
       },
     });
   }
+  addHive() {}
 
   clicked(event: any) {
     const target = event.target.parentElement;

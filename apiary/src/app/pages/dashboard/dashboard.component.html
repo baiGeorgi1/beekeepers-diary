@@ -15,16 +15,6 @@
             >Задачи</a
           >
         </li>
-        <!-- <li>
-          <a (click)="clicked($event)" class="vert-nav" routerLink="/dashboard"
-            >Бележки</a
-          >
-        </li>
-        <li>
-          <a (click)="clicked($event)" class="vert-nav" routerLink="/dashboard"
-            >A</a
-          >
-        </li> -->
       </ul>
     </div>
   </div>
@@ -62,9 +52,81 @@
     </div>
 
     <div *ngIf="isCreateHive" class="add-hive">
-      <p>add-hive works!</p>
+      <div class="hive-container">
+        <div class="data">
+          <form [formGroup]="form" (ngSubmit)="addHive()">
+            <div class="field">
+              <label for="type">Тип:</label>
+              <input
+                id="type"
+                name="type"
+                type="type"
+                placeholder="Тип"
+                formControlName="type"
+              />
+            </div>
+            <!-- <ng-container *ngIf="form.get('email')?.touched">
+            <p
+              class="error"
+              *ngIf="form.get('email')?.errors?.['emailValidator']"
+            >
+              Email is not valid!
+            </p>
+         
+          </ng-container> -->
+            <div class="field">
+              <label for="frames">Рамки:</label>
+              <input
+                id="frames"
+                name="uframes"
+                type="text"
+                placeholder="бр. рамки"
+                formControlName="frames"
+              />
+            </div>
+            <!-- <ng-container *ngIf="form.get('username')?.touched">
+              <p
+                class="error"
+                *ngIf="form.get('username')?.errors?.['minlength']"
+              >
+                Atleast 4 characters needed!
+              </p>
+            </ng-container> -->
+            <ng-container>
+              <div class="field">
+                <label for="hive-number">Номер на кошер:</label>
+                <input
+                  id="hive-number"
+                  name="hive-number"
+                  type="hive-number"
+                  placeholder="No:"
+                  formControlName="hive-number"
+                />
+                <!-- <ng-container
+                  *ngIf="form.get('passGroup')?.get('password')?.touched"
+                >
+               
+                  <p
+                    class="error"
+                    *ngIf="form.get('passGroup')?.get('password')?.errors?.['minlength']"
+                  >
+                    Atleast 4 characters needed!
+                  </p>
+                </ng-container> -->
+              </div>
+            </ng-container>
+            <button
+              class="form-btn"
+              [disabled]="form.invalid"
+              [style]="{ backgroundColor: form.invalid ? '#9a3501' : '' }"
+            >
+              Добави
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
 
-    <div *ngIf="isTask" class="task"><p>TAskS</p></div>
+    <div *ngIf="isTask" class="tasks"><p>TAskS</p></div>
   </div>
 </div>
