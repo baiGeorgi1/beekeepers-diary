@@ -1,10 +1,13 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 import { GlobalLoaderService } from 'src/app/core/global-loader/global-loader.service';
 import { ItemService } from 'src/app/services/item.service';
 import { UserService } from 'src/app/services/user.service';
 import { Hives } from 'src/app/types/hives';
+import { UserForAuth } from 'src/app/types/user';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-dashboard',

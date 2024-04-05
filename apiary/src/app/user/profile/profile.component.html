@@ -1,0 +1,148 @@
+<div class="background">
+  <div class="container">
+    <div class="data">
+      <!-- Read only -->
+      <ng-container *ngIf="!editMode">
+        <div class="field">
+          <label for="email">Email:</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="email"
+            formControlName="email"
+            [value]="user.email"
+          />
+        </div>
+        <div class="field">
+          <label for="username">Username:</label>
+          <input
+            id="username"
+            name="ussername"
+            type="text"
+            placeholder="username"
+            formControlName="username"
+            [value]="user.username"
+          />
+        </div>
+
+        <button class="form-btn edit" (click)="onEdit()">Промени</button>
+      </ng-container>
+
+      <!-- Edit -->
+      <ng-container *ngIf="editMode">
+        <form [formGroup]="form" (ngSubmit)="onSave()">
+          <div class="field">
+            <label for="email">Email:</label>
+
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="email"
+              formControlName="email"
+              [value]="user.email"
+            />
+          </div>
+          <ng-container *ngIf="form.get('email')?.touched">
+            <p
+              class="error"
+              *ngIf="form.get('email')?.errors?.['emailValidator']"
+            >
+              Email is not valid!
+            </p>
+            <!-- <p
+                          class="error"
+                          *ngIf="form.get('email')?.errors?.['required']"
+                      >
+                          Email is required!
+                      </p> -->
+          </ng-container>
+          <div class="field">
+            <label for="username">Username:</label>
+            <input
+              id="username"
+              name="ussername"
+              type="text"
+              placeholder="username"
+              formControlName="username"
+              [value]="user.username"
+            />
+          </div>
+          <ng-container *ngIf="form.get('username')?.touched">
+            <p
+              class="error"
+              *ngIf="form.get('username')?.errors?.['minlength']"
+            >
+              Atleast 4 characters needed!
+            </p>
+            <!-- <p
+                          class="error"
+                          *ngIf="form.get('username')?.errors?.['required']"
+                      >
+                          Username is requred!
+                      </p> -->
+          </ng-container>
+          <ng-container formGroupName="passGroup">
+            <div class="field">
+              <label for="Name">Password:</label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="********"
+                formControlName="password"
+                [value]="user.password"
+              />
+              <ng-container
+                *ngIf="form.get('passGroup')?.get('password')?.touched"
+              >
+                <!-- <p
+                                  class="error"
+                                  *ngIf="form.get('passGroup')?.get('password')?.errors?.['required']"
+                              >
+                                  Password is reqired
+                              </p> -->
+                <p
+                  class="error"
+                  *ngIf="form.get('passGroup')?.get('password')?.errors?.['minlength']"
+                >
+                  Atleast 4 characters needed!
+                </p>
+              </ng-container>
+            </div>
+            <div class="field">
+              <label for="repeatPassword">Repeat password:</label>
+              <input
+                id="repeatPassword"
+                name="repeatPassword"
+                type="password"
+                placeholder="repeat password"
+                formControlName="repeatPassword"
+                [value]="user.password"
+              />
+              <ng-container
+                *ngIf="form.get('passGroup')?.get('repeatPassword')?.touched"
+              >
+                <p
+                  class="error"
+                  *ngIf="form.get('passGroup')?.errors?.['matchPasswords'] || form.get('passGroup')?.get('repeatPassword')?.errors?.['required']"
+                >
+                  Repeated pasword does't match password!
+                </p>
+              </ng-container>
+            </div>
+          </ng-container>
+          <button
+            class="form-btn save"
+            [disabled]="form.invalid"
+            [style]="{ backgroundColor: form.invalid ? '#9a3501' : '' }"
+          >
+            Запази
+          </button>
+          <button class="form-btn cancel" (click)="cancel()">Отмени</button>
+        </form>
+      </ng-container>
+    </div>
+  </div>
+</div>
