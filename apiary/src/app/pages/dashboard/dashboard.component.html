@@ -31,7 +31,7 @@
               src="../../../assets/images/hive_grande.png"
               alt="#"
             />
-            <h6>{{ hive.type }}</h6>
+            <h6>{{ hive.hiveType }}</h6>
             <p>No:{{ hive.hiveNumber }}</p>
             <p>{{ hive.frames }} рамков</p>
             <button class="form-btn">Виж</button>
@@ -45,13 +45,13 @@
         <div class="data">
           <form [formGroup]="form" (ngSubmit)="addHive()">
             <div class="field">
-              <label for="type">Тип:</label>
+              <label for="hiveType">Тип:</label>
               <input
-                id="type"
-                name="type"
-                type="type"
+                id="hiveType"
+                name="hiveType"
+                type="hiveType"
                 placeholder="Тип"
-                formControlName="type"
+                formControlName="hiveType"
               />
             </div>
             <!-- <ng-container *ngIf="form.get('email')?.touched">
@@ -83,13 +83,13 @@
             </ng-container> -->
             <ng-container>
               <div class="field">
-                <label for="hive-number">Номер на кошер:</label>
+                <label for="hiveNumber">Номер на кошер:</label>
                 <input
-                  id="hive-number"
-                  name="hive-number"
-                  type="hive-number"
+                  id="hiveNumber"
+                  name="hiveNumber"
+                  type="hiveNumber"
                   placeholder="No:"
-                  formControlName="hive-number"
+                  formControlName="hiveNumber"
                 />
                 <!-- <ng-container
                   *ngIf="form.get('passGroup')?.get('password')?.touched"

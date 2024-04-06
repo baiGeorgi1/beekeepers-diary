@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 import { GlobalLoaderService } from 'src/app/core/global-loader/global-loader.service';
@@ -23,7 +23,11 @@ export class DashboardComponent implements OnInit {
   isCreateHive: boolean = false;
   isTask: boolean = false;
   //  add-hive
-  form = this.fb.group({});
+  form = this.fb.group({
+    hiveType: ['', Validators.required],
+    frames: ['', Validators.required],
+    hiveNumber: ['', Validators.required],
+  });
 
   get userId(): string {
     return this.userService.getUser()._id || '';
@@ -55,8 +59,8 @@ export class DashboardComponent implements OnInit {
     //     console.log('Type:', this.hives);
     //   },
     // });
-
-    this.api.getHivesP(this.userId).subscribe({
+    // ** info panel
+    this.api.getUserHives().subscribe({
       next: (hive) => {
         for (const key in hive) {
           if (this.userId == hive[key].userId) {
@@ -69,8 +73,13 @@ export class DashboardComponent implements OnInit {
       complete: () => {},
     });
   }
-
-  addHive() {}
+  // ** add-hive panel
+  addHive(): void {
+    if (this.form.invalid) {
+      return;
+    }
+    const { hiveType, frames, hiveNumber } = this.form.value;
+  }
 
   // ** Vertical nav
   clicked(event: any) {

@@ -2,7 +2,7 @@ import { User } from './user';
 
 export interface Hives {
   _id: string;
-  type: string;
+  hiveType: string;
   frames: number;
   hiveNumber: number;
   userId: string;

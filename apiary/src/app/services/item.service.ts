@@ -11,12 +11,12 @@ const { itemURL } = environment;
 })
 export class ItemService {
   constructor(private http: HttpClient, private userService: UserService) {}
-
-  getHives(): Observable<Hives[]> {
-    const { itemURL } = environment;
-    return this.http.get<Hives[]>(`${itemURL}/hives`);
-  }
-  getHivesP(userId: string): Observable<Hives[]> {
+  //todo
+  // getHives(): Observable<Hives[]> {
+  //   const { itemURL } = environment;
+  //   return this.http.get<Hives[]>(`${itemURL}/hives`);
+  // }
+  getUserHives(): Observable<Hives[]> {
     const res = this.http.get<Hives[]>(`${itemURL}/hives`);
     console.log('RESPONSE:', res);
 
