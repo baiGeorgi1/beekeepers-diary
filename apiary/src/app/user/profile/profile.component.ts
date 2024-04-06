@@ -5,7 +5,7 @@ import { Observable, Subscription, tap } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { emailValidator } from 'src/app/shared/utils/email-validator';
 import { matchPasswords } from 'src/app/shared/utils/match-passwords';
-import { UserForAuth, profile } from 'src/app/types/user';
+import { Profile, UserForAuth } from 'src/app/types/user';
 
 @Component({
   selector: 'app-profile',
@@ -37,10 +37,9 @@ export class ProfileComponent implements OnInit {
     private router: Router
   ) {}
 
-  profile: profile = {
+  profile: Profile = {
     email: '',
     username: '',
-    password: '',
   };
 
   ngOnInit(): void {
@@ -50,7 +49,6 @@ export class ProfileComponent implements OnInit {
     this.profile = {
       email,
       username,
-      password,
     };
     this.form.setValue({
       email,

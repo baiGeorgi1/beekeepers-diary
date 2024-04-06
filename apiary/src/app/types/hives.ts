@@ -5,7 +5,7 @@ export interface Hives {
   type: string;
   frames: number;
   hiveNumber: number;
-  userId: User[];
+  userId: string;
 }
 
 // export interface Hives {

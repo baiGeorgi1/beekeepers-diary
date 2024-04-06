@@ -20,35 +20,24 @@
   </div>
   <div class="content">
     <div *ngIf="isInfo" class="main">
-      <div *ngIf="" class="empty">
+      <div *ngIf="hives.length == 0" class="empty">
         <h1>Все още нямате добавени кошери!</h1>
       </div>
-      <div class="quality-box">
-        <figure class="item-fig">
-          <img
-            class="item-img"
-            src="../../../assets/images/hive_grande.png"
-            alt="#"
-          />
-          <h5>Farar</h5>
-          <p>No:{{ hives }}</p>
-          <p>{{ hives }}</p>
-          <button class="form-btn">Виж</button>
-        </figure>
-      </div>
-      <div class="quality-box">
-        <figure class="item-fig">
-          <img
-            class="item-img"
-            src="../../../assets/images/hive_grande.png"
-            alt="#"
-          />
-          <h5>Name</h5>
-          <p>No: 5</p>
-          <p>10 рамки</p>
-          <button class="form-btn">Виж</button>
-        </figure>
-      </div>
+      <ng-container *ngIf="hives.length > 0">
+        <div *ngFor="let hive of hives" class="quality-box">
+          <figure class="item-fig">
+            <img
+              class="item-img"
+              src="../../../assets/images/hive_grande.png"
+              alt="#"
+            />
+            <h6>{{ hive.type }}</h6>
+            <p>No:{{ hive.hiveNumber }}</p>
+            <p>{{ hive.frames }} рамков</p>
+            <button class="form-btn">Виж</button>
+          </figure>
+        </div>
+      </ng-container>
     </div>
 
     <div *ngIf="isCreateHive" class="add-hive">

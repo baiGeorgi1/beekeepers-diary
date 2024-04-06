@@ -3,7 +3,7 @@ import {
   OnDestroy,
   ɵpublishDefaultGlobalUtils,
 } from '@angular/core';
-import { UserForAuth } from '../types/user';
+import { Profile, User, UserForAuth } from '../types/user';
 import { BehaviorSubject, Observable, Subscription, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
@@ -44,6 +44,7 @@ export class UserService {
       .pipe(
         tap((user) => {
           this.user$$.next(user);
+          console.log(user);
         })
       );
   }
@@ -78,11 +79,7 @@ export class UserService {
       .get<UserForAuth>(`${userURL}/me`)
       .pipe(tap((user) => this.user$$.next(user)));
   }
-  getUserP() {
-    return this.http
-      .get<UserForAuth>('/users/me')
-      .pipe(tap((user) => this.user$$.next(user)));
-  }
+
   setUser(data: UserForAuth): void {
     localStorage.setItem(environment.USER_KEY, JSON.stringify(data));
   }

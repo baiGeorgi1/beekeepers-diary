@@ -16,8 +16,7 @@ export interface UserForAuth {
   _id: string;
   accessToken: string;
 }
-export interface profile {
+export interface Profile {
   email: string;
   username: string;
-  password: string;
 }

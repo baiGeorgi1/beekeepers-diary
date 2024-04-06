@@ -6,7 +6,7 @@ import { GlobalLoaderService } from 'src/app/core/global-loader/global-loader.se
 import { ItemService } from 'src/app/services/item.service';
 import { UserService } from 'src/app/services/user.service';
 import { Hives } from 'src/app/types/hives';
-import { UserForAuth } from 'src/app/types/user';
+
 import { environment } from 'src/environments/environment.development';
 
 @Component({
@@ -16,10 +16,13 @@ import { environment } from 'src/environments/environment.development';
 })
 export class DashboardComponent implements OnInit {
   hives: Hives[] = [];
+  isOwner!: boolean;
+
+  // vertical nav
   isInfo: boolean = true;
   isCreateHive: boolean = false;
   isTask: boolean = false;
-
+  //  add-hive
   form = this.fb.group({});
 
   get userId(): string {
@@ -38,23 +41,44 @@ export class DashboardComponent implements OnInit {
     //     this.globalLoader.hideLoader();
     // }, 2500);
 
-    const result = this.api.getItems(this.userId).subscribe({
-      next: (items: Hives[]) => {
-        // console.log('ITEMS', items, this.userId);
+    //todo - working
+    // this.api.getHives().subscribe({
+    //   next: (hives) => {
+    //     Object.entries(hives).forEach((e) => {
+    //       console.log(e);
+
+    //       this.hives.push(e[1]);
+    //     });
+    //   },
+    //   error: () => {},
+    //   complete: () => {
+    //     console.log('Type:', this.hives);
+    //   },
+    // });
+
+    this.api.getHivesP(this.userId).subscribe({
+      next: (hive) => {
+        for (const key in hive) {
+          if (this.userId == hive[key].userId) {
+            console.log(hive[key]);
+            this.hives.push(hive[key]);
+          }
+        }
       },
-      complete: () => {
-        // console.log("Completed: ", this.hives);
-      },
+      error: () => {},
+      complete: () => {},
     });
   }
+
   addHive() {}
 
+  // ** Vertical nav
   clicked(event: any) {
     const target = event.target.parentElement;
     const vertNavBtns = document.querySelectorAll('.vert-nav');
     for (let i = 0; i < vertNavBtns.length; i++) {
       const item = vertNavBtns[i].parentElement;
-      // console.log(item);
+
       item!.classList.remove('active');
     }
     target.classList.add('active');
