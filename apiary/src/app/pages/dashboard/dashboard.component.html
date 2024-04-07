@@ -4,11 +4,21 @@
     <div class="navigation">
       <ul class="nav-list">
         <li id="info" class="active">
-          <a (click)="clicked($event)" class="vert-nav">Инфо</a>
+          <a
+            (click)="clicked($event)"
+            routerLink="/dashboard/info"
+            class="vert-nav"
+            >Инфо</a
+          >
         </li>
 
         <li id="create-hive">
-          <a (click)="clicked($event)" class="vert-nav">Добави кошер</a>
+          <a
+            (click)="clicked($event)"
+            routerLink="/dashboard/add-hive"
+            class="vert-nav"
+            >Добави кошер</a
+          >
         </li>
         <li id="tasks">
           <a (click)="clicked($event)" class="vert-nav" routerLink="/dashboard"
@@ -18,6 +28,7 @@
       </ul>
     </div>
   </div>
+
   <div class="content">
     <div *ngIf="isInfo" class="main">
       <div *ngIf="hives.length == 0" class="empty">
@@ -39,78 +50,81 @@
         </div>
       </ng-container>
     </div>
-
+    <app-add-hive></app-add-hive>
+    <!-- Add-Hive -->
     <div *ngIf="isCreateHive" class="add-hive">
       <div class="hive-container">
         <div class="data">
-          <form [formGroup]="form" (ngSubmit)="addHive()">
+          <form #addForm="ngForm" (ngSubmit)="addHive(addForm)">
             <div class="field">
               <label for="hiveType">Тип:</label>
-              <input
-                id="hiveType"
+              <select
+                type="text"
                 name="hiveType"
-                type="hiveType"
-                placeholder="Тип"
-                formControlName="hiveType"
-              />
+                id="hiveType"
+                autofocus
+                required
+                #hiveType="ngModel"
+                ngModel
+              >
+                <option value="dadantBlat">Дадан-Блат</option>
+                <option value="langstrotRut">Лангстрот-Рут</option>
+                <option value="farar">Фарар</option>
+              </select>
             </div>
-            <!-- <ng-container *ngIf="form.get('email')?.touched">
-            <p
-              class="error"
-              *ngIf="form.get('email')?.errors?.['emailValidator']"
-            >
-              Email is not valid!
-            </p>
-         
-          </ng-container> -->
+            <ng-container *ngIf="hiveType.touched">
+              <p class="error" *ngIf="hiveType?.errors?.['required']">
+                Въведете тип!
+              </p>
+            </ng-container>
             <div class="field">
               <label for="frames">Рамки:</label>
               <input
                 id="frames"
-                name="uframes"
-                type="text"
+                name="frames"
+                type="number"
                 placeholder="бр. рамки"
-                formControlName="frames"
+                min="8"
+                max="12"
+                #frames="ngModel"
+                ngModel
               />
             </div>
-            <!-- <ng-container *ngIf="form.get('username')?.touched">
-              <p
-                class="error"
-                *ngIf="form.get('username')?.errors?.['minlength']"
-              >
-                Atleast 4 characters needed!
+            <ng-container *ngIf="frames?.touched">
+              <p class="error" *ngIf="frames?.errors?.['required']">
+                Въведете бр. рамки!
               </p>
-            </ng-container> -->
+              <p class="error" *ngIf="frames?.errors?.['min']">
+                Кошерът трябва да е между 8 и 12 рамков!
+              </p>
+              <p class="error" *ngIf="frames?.errors?.['max']">
+                Кошерът трябва да е между 8 и 12 рамков!
+              </p>
+            </ng-container>
             <ng-container>
               <div class="field">
                 <label for="hiveNumber">Номер на кошер:</label>
                 <input
                   id="hiveNumber"
                   name="hiveNumber"
-                  type="hiveNumber"
+                  type="number"
                   placeholder="No:"
-                  formControlName="hiveNumber"
+                  requred
+                  min="1"
+                  #hiveNumber="ngModel"
+                  ngModel
                 />
-                <!-- <ng-container
-                  *ngIf="form.get('passGroup')?.get('password')?.touched"
-                >
-               
-                  <p
-                    class="error"
-                    *ngIf="form.get('passGroup')?.get('password')?.errors?.['minlength']"
-                  >
-                    Atleast 4 characters needed!
+                <ng-container *ngIf="hiveNumber?.touched">
+                  <p class="error" *ngIf="hiveNumber?.errors?.['required']">
+                    Въведете номер на кошерът!
                   </p>
-                </ng-container> -->
+                  <p class="error" *ngIf="hiveNumber?.errors?.['min']">
+                    Номерът трябва да е положително число!
+                  </p>
+                </ng-container>
               </div>
             </ng-container>
-            <button
-              class="form-btn"
-              [disabled]="form.invalid"
-              [style]="{ backgroundColor: form.invalid ? '#9a3501' : '' }"
-            >
-              Добави
-            </button>
+            <button class="form-btn">Добави</button>
           </form>
         </div>
       </div>

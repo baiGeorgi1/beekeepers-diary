@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { FormBuilder, NgForm, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
 
 import { GlobalLoaderService } from 'src/app/core/global-loader/global-loader.service';
 import { ItemService } from 'src/app/services/item.service';
@@ -17,23 +18,26 @@ import { environment } from 'src/environments/environment.development';
 export class DashboardComponent implements OnInit {
   hives: Hives[] = [];
   isOwner!: boolean;
+  subscribe$!: Subscription;
+  errorMsg!: string;
 
   // vertical nav
   isInfo: boolean = true;
   isCreateHive: boolean = false;
   isTask: boolean = false;
   //  add-hive
-  form = this.fb.group({
-    hiveType: ['', Validators.required],
-    frames: ['', Validators.required],
-    hiveNumber: ['', Validators.required],
-  });
+  // form = this.fb.group({
+  //   hiveType: ['', Validators.required],
+  //   frames: [Number(), Validators.required],
+  //   hiveNumber: [Number(), Validators.required],
+  // });
 
   get userId(): string {
     return this.userService.getUser()._id || '';
   }
 
   constructor(
+    private router: Router,
     private globalLoader: GlobalLoaderService,
     private userService: UserService,
     private api: ItemService,
@@ -74,11 +78,22 @@ export class DashboardComponent implements OnInit {
     });
   }
   // ** add-hive panel
-  addHive(): void {
-    if (this.form.invalid) {
+  addHive(addForm: NgForm) {
+    if (addForm.invalid) {
       return;
     }
-    const { hiveType, frames, hiveNumber } = this.form.value;
+    const data = addForm.value;
+    data.userId = this.userId;
+
+    this.subscribe$ = this.api.createHive(data).subscribe({
+      next: () => {
+        this.router.getCurrentNavigation();
+      },
+      error: (err) => {
+        this.errorMsg = err.error.message;
+      },
+      complete: () => {},
+    });
   }
 
   // ** Vertical nav

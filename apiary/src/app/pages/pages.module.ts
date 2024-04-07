@@ -16,6 +16,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NotFoundComponent,
     AddHiveComponent,
   ],
-  imports: [CommonModule, SharedModule, PageRoutingModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    FormsModule,
+    PageRoutingModule,
+    ReactiveFormsModule,
+  ],
 })
 export class PagesModule {}

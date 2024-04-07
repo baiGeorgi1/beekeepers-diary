@@ -100,29 +100,34 @@ li.active a {
   width: 500px;
   height: auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 .hive-container a {
   padding: 1em;
   text-align: center;
 }
 .data {
-  justify-content: center;
+  margin: 1em auto;
   display: flex;
-  width: 450px;
+  flex-direction: column;
+  width: 100%;
 }
 
 form {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
+
 label {
   display: block;
   font-weight: bold;
   line-height: 1;
   padding-bottom: 0.2em;
 }
-input {
+input,
+select {
+  width: 95%;
   display: block;
   padding: 0.4em;
   border: 4px solid rgb(253, 193, 60);
@@ -130,12 +135,8 @@ input {
   outline: none;
 }
 .field {
-  padding: 0.5em;
-}
-.field .helper {
-  font-size: 0.9em;
-  font-style: italic;
-  opacity: 0.5;
+  padding: 0.2em;
+  flex: 1 1 100%;
 }
 .form-btn {
   width: 70%;
@@ -149,6 +150,19 @@ input {
   color: #a43d03;
   font-size: 0.8em;
   font-weight: 700;
+}
+
+p.error {
+  margin: 0.5em;
+  padding: 0.2em;
+  padding-inline: 0.5em;
+  border: 2px solid rgb(253, 193, 60);
+  background-color: red;
+  color: white;
+  border-radius: 20px;
+  font-size: 1.1em;
+  font-weight: 700;
+  text-align: center;
 }
 /* end of add-hive */
 

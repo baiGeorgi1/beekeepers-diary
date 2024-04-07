@@ -7,8 +7,18 @@ import { AddHiveComponent } from './add-hive/add-hive.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  // {
+  //   path: 'dashboard',
+  //   canActivate: [loggedInGuard],
+  //   component: DashboardComponent,
+  // },
   {
-    path: 'dashboard',
+    path: 'dashboard/info',
+    canActivate: [loggedInGuard],
+    component: DashboardComponent,
+  },
+  {
+    path: 'dashboard/add-hive',
     canActivate: [loggedInGuard],
     component: DashboardComponent,
   },
