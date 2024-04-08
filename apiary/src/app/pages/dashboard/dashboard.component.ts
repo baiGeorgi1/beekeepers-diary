@@ -1,36 +1,40 @@
-import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  DoCheck,
+  ElementRef,
+  OnChanges,
+  OnInit,
+  Renderer2,
+  SimpleChange,
+  SimpleChanges,
+} from '@angular/core';
 import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 import { GlobalLoaderService } from 'src/app/core/global-loader/global-loader.service';
 import { ItemService } from 'src/app/services/item.service';
 import { UserService } from 'src/app/services/user.service';
 import { Hives } from 'src/app/types/hives';
 
-import { environment } from 'src/environments/environment.development';
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
+  template:
+    '<app-add-hive ([isInfo])="isInfo" ([isCreateHive])="isCreateHive"></app-add-hive>',
   styleUrls: ['./dashboard.component.css'],
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, DoCheck {
   hives: Hives[] = [];
   isOwner!: boolean;
   subscribe$!: Subscription;
   errorMsg!: string;
 
   // vertical nav
-  isInfo: boolean = true;
-  isCreateHive: boolean = false;
-  isTask: boolean = false;
-  //  add-hive
-  // form = this.fb.group({
-  //   hiveType: ['', Validators.required],
-  //   frames: [Number(), Validators.required],
-  //   hiveNumber: [Number(), Validators.required],
-  // });
+  public isInfo: boolean = true;
+  public isCreateHive: boolean = false;
+  public isTask: boolean = false;
 
   get userId(): string {
     return this.userService.getUser()._id || '';
@@ -40,60 +44,28 @@ export class DashboardComponent implements OnInit {
     private router: Router,
     private globalLoader: GlobalLoaderService,
     private userService: UserService,
-    private api: ItemService,
-    private fb: FormBuilder
+    private api: ItemService
   ) {}
   ngOnInit(): void {
+    this.isInfo = true;
+    this.isCreateHive = false;
+    this.isTask = false;
     // this.globalLoader.showLoader();
     // setTimeout(() => {
     //     this.globalLoader.hideLoader();
     // }, 2500);
-
-    //todo - working
-    // this.api.getHives().subscribe({
-    //   next: (hives) => {
-    //     Object.entries(hives).forEach((e) => {
-    //       console.log(e);
-
-    //       this.hives.push(e[1]);
-    //     });
-    //   },
-    //   error: () => {},
-    //   complete: () => {
-    //     console.log('Type:', this.hives);
-    //   },
-    // });
-    // ** info panel
-    this.api.getUserHives().subscribe({
-      next: (hive) => {
-        for (const key in hive) {
-          if (this.userId == hive[key].userId) {
-            console.log(hive[key]);
-            this.hives.push(hive[key]);
-          }
-        }
-      },
-      error: () => {},
-      complete: () => {},
-    });
   }
-  // ** add-hive panel
-  addHive(addForm: NgForm) {
-    if (addForm.invalid) {
-      return;
-    }
-    const data = addForm.value;
-    data.userId = this.userId;
+  // ngOnChanges(changes: SimpleChanges): void {
+  //   const { isInfo } = changes;
 
-    this.subscribe$ = this.api.createHive(data).subscribe({
-      next: () => {
-        this.router.getCurrentNavigation();
-      },
-      error: (err) => {
-        this.errorMsg = err.error.message;
-      },
-      complete: () => {},
-    });
+  //   console.log('OnChanges', this.isInfo);
+  // }
+  ngDoCheck() {
+    console.log('DO CHECk:', this.isInfo, this.isCreateHive);
+    if (this.isInfo) {
+      document.getElementById('info')?.classList.add('active');
+      document.getElementById('create-hive')?.classList.remove('active');
+    }
   }
 
   // ** Vertical nav
@@ -110,6 +82,7 @@ export class DashboardComponent implements OnInit {
 
     switch (id) {
       case 'info':
+        // this.router.navigate(['/info']);
         this.isInfo = true;
         this.isCreateHive = false;
         this.isTask = false;

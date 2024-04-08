@@ -33,8 +33,6 @@ export class AppInterceptor implements HttpInterceptor {
     }
 
     req = req.clone({
-      // url: req.url.replace(this.API, this.userUrl),
-      // withCredentials: true,
       setHeaders: {
         'Content-Type': 'application/json',
       },

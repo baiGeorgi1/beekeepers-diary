@@ -1,18 +1,18 @@
 footer {
-    display: flex;
-    position: fixed;
-    bottom: 0;
-    padding-inline: 1em;
-    padding: 1em;
-    width: 100vw;
-    display: flex;
-    flex-direction: row;
-    background-color: rgb(69, 92, 115);
-    flex: 0 0 100%;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  padding-inline: 1em;
+  padding: 1em;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(69, 92, 115);
+  flex: 0 0 100%;
 }
 p {
-    margin: 0 auto;
-    text-align: center;
-    font-size: 1.2em;
-    color: white;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.2em;
+  color: white;
 }

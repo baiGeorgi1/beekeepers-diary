@@ -13,18 +13,11 @@ export class ItemService {
   //todo
 
   getUserHives(): Observable<Hives[]> {
-    const res = this.http.get<Hives[]>(`${itemURL}`);
-    console.log('RESPONSE:', res);
-
-    return res;
+    return this.http.get<Hives[]>(`${itemURL}`);
   }
   createHive(data: Hives): Observable<Hives> {
     const token = environment.USER_KEY;
-    // const payload = {
-    //   hiveType,
-    //   frames,
-    //   hiveNumber,
-    // };
+
     return this.http.post<Hives>(`${itemURL}`, data, {
       headers: {
         'Content-Type': 'application/json',

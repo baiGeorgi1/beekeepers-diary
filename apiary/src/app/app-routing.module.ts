@@ -9,7 +9,7 @@ export const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
   },
-  { path: '**', redirectTo: '/404' },
+  // { path: '**', redirectTo: '/404' },
   { path: '404', component: NotFoundComponent },
 ];
 

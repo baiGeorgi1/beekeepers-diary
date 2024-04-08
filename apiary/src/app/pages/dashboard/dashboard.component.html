@@ -4,55 +4,32 @@
     <div class="navigation">
       <ul class="nav-list">
         <li id="info" class="active">
-          <a
-            (click)="clicked($event)"
-            routerLink="/dashboard/info"
-            class="vert-nav"
-            >Инфо</a
-          >
+          <a (click)="clicked($event)" class="vert-nav">Инфо</a>
         </li>
 
         <li id="create-hive">
-          <a
-            (click)="clicked($event)"
-            routerLink="/dashboard/add-hive"
-            class="vert-nav"
-            >Добави кошер</a
-          >
+          <a (click)="clicked($event)" class="vert-nav">Добави кошер</a>
         </li>
         <li id="tasks">
-          <a (click)="clicked($event)" class="vert-nav" routerLink="/dashboard"
+          <a (click)="clicked($event)" routerLink="/dashboard" class="vert-nav"
             >Задачи</a
           >
         </li>
       </ul>
     </div>
   </div>
-
   <div class="content">
-    <div *ngIf="isInfo" class="main">
-      <div *ngIf="hives.length == 0" class="empty">
-        <h1>Все още нямате добавени кошери!</h1>
-      </div>
-      <ng-container *ngIf="hives.length > 0">
-        <div *ngFor="let hive of hives" class="quality-box">
-          <figure class="item-fig">
-            <img
-              class="item-img"
-              src="../../../assets/images/hive_grande.png"
-              alt="#"
-            />
-            <h6>{{ hive.hiveType }}</h6>
-            <p>No:{{ hive.hiveNumber }}</p>
-            <p>{{ hive.frames }} рамков</p>
-            <button class="form-btn">Виж</button>
-          </figure>
-        </div>
-      </ng-container>
-    </div>
-    <app-add-hive></app-add-hive>
+    <app-info *ngIf="isInfo"></app-info>
+    <app-add-hive
+      [isInfo]="isInfo"
+      (isInfoChanged)="isInfo = $event"
+      [isCreateHive]="isCreateHive"
+      (isCreateHiveChanged)="isCreateHive = $event"
+      *ngIf="isCreateHive"
+    ></app-add-hive>
+    <app-tasks *ngIf="isTask"></app-tasks>
     <!-- Add-Hive -->
-    <div *ngIf="isCreateHive" class="add-hive">
+    <!-- <div *ngIf="isCreateHive" class="add-hive">
       <div class="hive-container">
         <div class="data">
           <form #addForm="ngForm" (ngSubmit)="addHive(addForm)">
@@ -128,8 +105,8 @@
           </form>
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <div *ngIf="isTask" class="tasks"><p>TAskS</p></div>
+    <!-- <div *ngIf="isTask" class="tasks"><p>TAskS</p></div> -->
   </div>
 </div>

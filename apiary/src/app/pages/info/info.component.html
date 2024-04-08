@@ -1,0 +1,22 @@
+<div class="body">
+  <div class="main">
+    <div *ngIf="hives.length == 0" class="empty">
+      <h1>Все още нямате добавени кошери!</h1>
+    </div>
+    <ng-container *ngIf="hives.length > 0" class="loaded">
+      <div *ngFor="let hive of hives" class="quality-box">
+        <figure class="item-fig">
+          <img
+            class="item-img"
+            src="../../../assets/images/hive_grande.png"
+            alt="#"
+          />
+          <h6>{{ hive.hiveType }}</h6>
+          <p>{{ hive.frames }} рамков</p>
+          <p>No:{{ hive.hiveNumber }}</p>
+          <button class="form-btn">Виж</button>
+        </figure>
+      </div>
+    </ng-container>
+  </div>
+</div>

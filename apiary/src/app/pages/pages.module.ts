@@ -8,6 +8,8 @@ import { PageRoutingModule } from './page-routing.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AddHiveComponent } from './add-hive/add-hive.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InfoComponent } from './info/info.component';
+import { TasksComponent } from './tasks/tasks.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DashboardComponent,
     NotFoundComponent,
     AddHiveComponent,
+    InfoComponent,
+    TasksComponent,
   ],
   imports: [
     CommonModule,

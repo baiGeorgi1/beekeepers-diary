@@ -1,1 +1,78 @@
-<p>add-hive works!</p>
+<!-- Add-Hive -->
+<div class="add-hive">
+  <div class="hive-container">
+    <div class="data">
+      <form #addForm="ngForm" (ngSubmit)="addHive(addForm)">
+        <div class="field">
+          <label for="hiveType">Тип:</label>
+          <select
+            type="text"
+            name="hiveType"
+            id="hiveType"
+            autofocus
+            required
+            #hiveType="ngModel"
+            ngModel
+          >
+            <option value="dadantBlat">Дадан-Блат</option>
+            <option value="langstrotRut">Лангстрот-Рут</option>
+            <option value="farar">Фарар</option>
+          </select>
+        </div>
+        <ng-container *ngIf="hiveType.touched">
+          <p class="error" *ngIf="hiveType?.errors?.['required']">
+            Въведете тип!
+          </p>
+        </ng-container>
+        <div class="field">
+          <label for="frames">Рамки:</label>
+          <input
+            id="frames"
+            name="frames"
+            type="number"
+            placeholder="бр. рамки"
+            min="8"
+            max="12"
+            #frames="ngModel"
+            ngModel
+          />
+        </div>
+        <ng-container *ngIf="frames?.touched">
+          <p class="error" *ngIf="frames?.errors?.['required']">
+            Въведете бр. рамки!
+          </p>
+          <p class="error" *ngIf="frames?.errors?.['min']">
+            Кошерът трябва да е между 8 и 12 рамков!
+          </p>
+          <p class="error" *ngIf="frames?.errors?.['max']">
+            Кошерът трябва да е между 8 и 12 рамков!
+          </p>
+        </ng-container>
+        <ng-container>
+          <div class="field">
+            <label for="hiveNumber">Номер на кошер:</label>
+            <input
+              id="hiveNumber"
+              name="hiveNumber"
+              type="number"
+              placeholder="No:"
+              requred
+              min="1"
+              #hiveNumber="ngModel"
+              ngModel
+            />
+            <ng-container *ngIf="hiveNumber?.touched">
+              <p class="error" *ngIf="hiveNumber?.errors?.['required']">
+                Въведете номер на кошерът!
+              </p>
+              <p class="error" *ngIf="hiveNumber?.errors?.['min']">
+                Номерът трябва да е положително число!
+              </p>
+            </ng-container>
+          </div>
+        </ng-container>
+        <button class="form-btn">Добави</button>
+      </form>
+    </div>
+  </div>
+</div>
