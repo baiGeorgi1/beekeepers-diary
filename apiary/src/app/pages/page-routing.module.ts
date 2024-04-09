@@ -6,6 +6,7 @@ import { loggedInGuard } from '../guards/is-logged.guard';
 import { AddHiveComponent } from './add-hive/add-hive.component';
 import { InfoComponent } from './info/info.component';
 import { TasksComponent } from './tasks/tasks.component';
+import { HiveDetailsComponent } from './hive-details/hive-details.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -18,6 +19,11 @@ const routes: Routes = [
     path: 'dashboard/add-hive',
     canActivate: [loggedInGuard],
     component: AddHiveComponent,
+  },
+  {
+    path: 'dashboard/hive-details/:hive-details',
+    canActivate: [loggedInGuard],
+    component: HiveDetailsComponent,
   },
   {
     path: 'dashboard/tasks',

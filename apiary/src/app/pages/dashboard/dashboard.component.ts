@@ -61,7 +61,6 @@ export class DashboardComponent implements OnInit, DoCheck {
   //   console.log('OnChanges', this.isInfo);
   // }
   ngDoCheck() {
-    console.log('DO CHECk:', this.isInfo, this.isCreateHive);
     if (this.isInfo) {
       document.getElementById('info')?.classList.add('active');
       document.getElementById('create-hive')?.classList.remove('active');

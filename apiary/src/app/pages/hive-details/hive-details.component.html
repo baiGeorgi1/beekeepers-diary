@@ -1,0 +1,103 @@
+<div class="background">
+  <div class="container">
+    <div class="text">
+      <h3>Данни за кошер No: {{ hive.hiveNumber }}</h3>
+    </div>
+    <div class="img-container">
+      <img src="../../../assets/images/hiveProfile.jpg" alt="" />
+    </div>
+    <!-- Read only -->
+    <ng-container *ngIf="!editMode">
+      <div class="data">
+        <div class="field">
+          <label>Тип:</label>
+          <input
+            id="hiveType"
+            name="hiveType"
+            type="text"
+            placeholder="{{ hive.hiveType }}"
+            readonly
+          />
+        </div>
+        <div class="field">
+          <label>Майка:</label>
+          <input
+            id="mother"
+            name="mother"
+            type="text"
+            placeholder="{{ hive.mother }}"
+            readonly
+          />
+        </div>
+        <div class="field">
+          <label for="">Пило (бр.рамки):</label>
+          <input
+            id="brood"
+            name="brood"
+            type="number"
+            placeholder="{{ hive.brood }}"
+            readonly
+          />
+        </div>
+        <div class="field">
+          <label for="">Пчели (бр.междурамия):</label>
+          <input
+            id="bees"
+            name="bees"
+            type="number"
+            placeholder="{{ hive.bees }}"
+            readonly
+          />
+        </div>
+      </div>
+      <button (click)="editDetails()" class="edit-btn">Промени</button>
+    </ng-container>
+    <!-- Edit mode -->
+    <ng-container *ngIf="editMode">
+      <div class="data">
+        <div class="field">
+          <label>Тип:</label>
+          <input
+            id="hiveType"
+            name="hiveType"
+            type="text"
+            placeholder="{{ hive.hiveType }}"
+            readonly
+          />
+        </div>
+        <div class="field">
+          <label>Майка:</label>
+          <input
+            id="mother"
+            name="mother"
+            type="text"
+            placeholder="{{ hive.mother }}"
+            readonly
+          />
+        </div>
+        <div class="field">
+          <label for="">Пило (бр.рамки):</label>
+          <input
+            id="brood"
+            name="brood"
+            type="number"
+            placeholder="{{ hive.brood }}"
+            readonly
+          />
+        </div>
+        <div class="field">
+          <label for="">Пчели (бр.междурамия):</label>
+          <input
+            id="bees"
+            name="bees"
+            type="number"
+            placeholder="{{ hive.bees }}"
+            readonly
+          />
+        </div>
+      </div>
+      <button (click)="save()" class="save-btn">Запази</button>
+      <button (click)="cancel()" class="cancel-btn">Отмени</button>
+    </ng-container>
+  </div>
+</div>

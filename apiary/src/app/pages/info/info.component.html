@@ -14,7 +14,12 @@
           <h6>{{ hive.hiveType }}</h6>
           <p>{{ hive.frames }} рамков</p>
           <p>No:{{ hive.hiveNumber }}</p>
-          <button class="form-btn">Виж</button>
+          <button
+            routerLink="/dashboard/hive-details/{{ hive._id }}"
+            class="form-btn"
+          >
+            Виж
+          </button>
         </figure>
       </div>
     </ng-container>

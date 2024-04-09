@@ -30,7 +30,7 @@ export class AddHiveComponent {
   }
 
   addHive(addForm: NgForm) {
-    console.log('IsINfo:', this.isInfo);
+    // console.log('IsINfo:', this.isInfo);
 
     if (addForm.invalid) {
       return;

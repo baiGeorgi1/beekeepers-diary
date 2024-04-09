@@ -10,6 +10,7 @@ import { AddHiveComponent } from './add-hive/add-hive.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InfoComponent } from './info/info.component';
 import { TasksComponent } from './tasks/tasks.component';
+import { HiveDetailsComponent } from './hive-details/hive-details.component';
 
 @NgModule({
   declarations: [
@@ -19,13 +20,14 @@ import { TasksComponent } from './tasks/tasks.component';
     AddHiveComponent,
     InfoComponent,
     TasksComponent,
+    HiveDetailsComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
     FormsModule,
-    PageRoutingModule,
     ReactiveFormsModule,
+    PageRoutingModule,
   ],
 })
 export class PagesModule {}

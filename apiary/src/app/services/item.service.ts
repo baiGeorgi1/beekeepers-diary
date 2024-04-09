@@ -15,6 +15,9 @@ export class ItemService {
   getUserHives(): Observable<Hives[]> {
     return this.http.get<Hives[]>(`${itemURL}`);
   }
+  getHive(id: string) {
+    return this.http.get<Hives>(`${itemURL}/${id}`);
+  }
   createHive(data: Hives): Observable<Hives> {
     const token = environment.USER_KEY;
 
