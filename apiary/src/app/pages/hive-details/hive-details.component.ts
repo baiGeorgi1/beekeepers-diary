@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, NgForm, Validators } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
-import { routes } from 'src/app/app-routing.module';
+import { Subscription } from 'rxjs';
+
 import { ItemService } from 'src/app/services/item.service';
 import { Hives } from 'src/app/types/hives';
 
@@ -11,17 +11,17 @@ import { Hives } from 'src/app/types/hives';
   templateUrl: './hive-details.component.html',
   styleUrls: ['./hive-details.component.css'],
 })
-export class HiveDetailsComponent implements OnInit {
+export class HiveDetailsComponent implements OnInit, OnDestroy {
   subscribe$!: Subscription;
   errorMessage!: string;
-  hive!: Hives;
+
   form = this.fb.group({
     hiveType: ['', Validators.required],
     mother: ['', Validators.required],
     brood: [0, Validators.required],
     bees: [0, Validators.required],
   });
-  // hive = {} as Hives;
+  hive = {} as Hives;
 
   editMode: boolean = false;
   deleteMode: boolean = false;
@@ -36,9 +36,9 @@ export class HiveDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.activeRoute.params.subscribe((data) => {
       this.hiveId = data['hive-details'];
-      this.api.getHive(this.hiveId).subscribe((hive) => {
-        this.hive = hive;
-        console.log(hive);
+      this.subscribe$ = this.api.getHive(this.hiveId).subscribe({
+        next: (hive) => (this.hive = hive),
+        error: (err) => (this.errorMessage = err.error.message),
       });
     });
 
@@ -49,6 +49,7 @@ export class HiveDetailsComponent implements OnInit {
       bees: this.hive.bees,
     });
   }
+  // BUTONS
   changeView(): void {
     this.editMode = true;
   }
@@ -57,17 +58,17 @@ export class HiveDetailsComponent implements OnInit {
     this.deleteMode = false;
   }
   save() {
-    console.log('Invoked: ', this.form.value);
-
     if (this.form.invalid) {
       return;
     }
-    this.hive = this.form.value as Hives;
+    this.hive = { ...this.hive, ...this.form.value } as Hives;
+
     const { hiveType, mother, brood, bees } = this.hive;
-    this.api
+    this.subscribe$ = this.api
       .updateHive(this.hiveId, hiveType, mother, brood, bees)
-      .subscribe(() => {
-        this.editMode = false;
+      .subscribe({
+        next: () => (this.editMode = false),
+        error: (err) => (this.errorMessage = err.error.mesage),
       });
   }
   onDelete(hiveId: string): void {
@@ -78,5 +79,10 @@ export class HiveDetailsComponent implements OnInit {
       error: (error) => (this.errorMessage = error.error.mesage),
       complete: () => this.router.navigate(['dashboard/info']),
     });
+  }
+  ngOnDestroy(): void {
+    if (this.subscribe$ != undefined) {
+      this.subscribe$.unsubscribe();
+    }
   }
 }

@@ -55,7 +55,8 @@ span {
   line-height: 1;
   padding-bottom: 0.2em;
 }
-input {
+input,
+select {
   display: block;
   padding: 0.4em;
   border: 4px solid rgb(253, 193, 60);
@@ -75,10 +76,11 @@ input {
   flex: 1 0 100%;
   display: inline-block;
 }
+.back-btn,
 .edit-btn,
 .save-btn,
 .cancel-btn {
-  width: 50%;
+  width: 30%;
   margin: 1em auto;
   padding: 1em;
   border: 2px solid #9a3501;
@@ -92,8 +94,8 @@ input {
 .save-btn,
 .cancel-btn {
   display: block;
-  width: 30%;
 }
+.back-btn:hover,
 .save-btn:hover,
 .edit-btn:hover,
 .cancel-btn:hover {

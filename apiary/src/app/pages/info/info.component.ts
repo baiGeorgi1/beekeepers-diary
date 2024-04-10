@@ -21,13 +21,15 @@ export class InfoComponent implements OnInit {
     this.api.getUserHives().subscribe({
       next: (hive) => {
         for (const key in hive) {
-          if (this.userId == hive[key].userId) {
+          if (this.userId == hive[key]._ownerId) {
             this.hives.push(hive[key]);
           }
         }
       },
       error: () => {},
-      complete: () => {},
+      complete: () => {
+        console.log(this.hives);
+      },
     });
   }
 }

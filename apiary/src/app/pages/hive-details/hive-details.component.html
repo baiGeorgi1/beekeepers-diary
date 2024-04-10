@@ -51,6 +51,7 @@
         </div>
       </div>
       <button (click)="changeView()" class="edit-btn">Промени</button>
+      <button routerLink="/dashboard/info" class="back-btn">Назад</button>
       <button (click)="deleteMode = true" class="delete-btn">
         Изтрий кошер
       </button>
@@ -62,14 +63,14 @@
           <div class="field">
             <label for="hiveType">Тип:</label>
             <select
-              type="text"
               name="hiveType"
               id="hiveType"
-              autofocus
-              required
+              type="text"
               [value]="hive.hiveType"
+              required
               formControlName="hiveType"
             >
+              <option value="">{{ hive.hiveType }}</option>
               <option value="Дадан-Блат">Дадан-Блат</option>
               <option value="Лангстрот-Рут">Лангстрот-Рут</option>
               <option value="Фарар">Фарар</option>
@@ -135,7 +136,7 @@
       </div>
 
       <button (click)="save()" class="save-btn">Запази</button>
-      <button (click)="onCancel()" class="cancel-btn">Назад</button>
+      <button (click)="onCancel()" class="cancel-btn">Отмени</button>
     </ng-container>
     <ng-container *ngIf="deleteMode">
       <h2>

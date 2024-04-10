@@ -1,19 +1,12 @@
 import { User } from './user';
 
 export interface Hives {
-  _id: string;
   hiveType: string;
-  frames: number;
   hiveNumber: number;
-  userId: string;
+  frames: number;
   bees: number;
   mother: string;
   brood: number;
+  _id: string;
+  _ownerId: string;
 }
-
-// export interface HiveDetails {
-//   _id: string;
-//   hiveType: string;
-//   frames: number;
-//   bees?: number;
-// }
