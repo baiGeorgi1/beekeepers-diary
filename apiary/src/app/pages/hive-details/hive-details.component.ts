@@ -24,6 +24,7 @@ export class HiveDetailsComponent implements OnInit {
   // hive = {} as Hives;
 
   editMode: boolean = false;
+  deleteMode: boolean = false;
   hiveId: string = '';
 
   constructor(
@@ -53,6 +54,7 @@ export class HiveDetailsComponent implements OnInit {
   }
   onCancel(): void {
     this.editMode = false;
+    this.deleteMode = false;
   }
   save() {
     console.log('Invoked: ', this.form.value);
@@ -69,7 +71,9 @@ export class HiveDetailsComponent implements OnInit {
       });
   }
   onDelete(hiveId: string): void {
-    console.log('onDelete', hiveId);
+    this.editMode = false;
+    this.deleteMode = true;
+
     this.subscribe$ = this.api.deleteHive(hiveId).subscribe({
       error: (error) => (this.errorMessage = error.error.mesage),
       complete: () => this.router.navigate(['dashboard/info']),

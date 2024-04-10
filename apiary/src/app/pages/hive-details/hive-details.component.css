@@ -1,3 +1,8 @@
+h2 {
+  display: block;
+  text-align: center;
+  color: white;
+}
 .background {
   width: 100vw;
   height: calc(100vh - 134px);

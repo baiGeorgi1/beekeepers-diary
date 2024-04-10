@@ -1,13 +1,13 @@
 <div class="background">
   <div class="container">
-    <div class="text">
+    <div class="text" *ngIf="!deleteMode">
       <h3>Данни за кошер No: {{ hive.hiveNumber }}</h3>
     </div>
-    <div class="img-container">
+    <div class="img-container" *ngIf="!deleteMode">
       <img src="../../../assets/images/hiveProfile.jpg" alt="" />
     </div>
     <!-- Read only -->
-    <ng-container *ngIf="!editMode">
+    <ng-container *ngIf="!editMode && !deleteMode">
       <div class="data">
         <div class="field">
           <label>Тип:</label>
@@ -51,12 +51,12 @@
         </div>
       </div>
       <button (click)="changeView()" class="edit-btn">Промени</button>
-      <button (click)="onDelete(hive._id)" class="delete-btn">
+      <button (click)="deleteMode = true" class="delete-btn">
         Изтрий кошер
       </button>
     </ng-container>
     <!-- Edit mode -->
-    <ng-container *ngIf="editMode">
+    <ng-container *ngIf="editMode && !deleteMode">
       <div class="data">
         <form [formGroup]="form">
           <div class="field">
@@ -136,6 +136,14 @@
 
       <button (click)="save()" class="save-btn">Запази</button>
       <button (click)="onCancel()" class="cancel-btn">Назад</button>
+    </ng-container>
+    <ng-container *ngIf="deleteMode">
+      <h2>
+        Сигурни ли сте, че искате да изтриете кошер No:{{ hive.hiveNumber }}
+      </h2>
+
+      <button (click)="onDelete(hive._id)" class="delete-btn">Изтрий</button>
+      <button (click)="onCancel()" class="edit-btn">Назад</button>
     </ng-container>
   </div>
 </div>
