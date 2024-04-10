@@ -50,54 +50,92 @@
           />
         </div>
       </div>
-      <button (click)="editDetails()" class="edit-btn">Промени</button>
+      <button (click)="changeView()" class="edit-btn">Промени</button>
+      <button (click)="onDelete(hive._id)" class="delete-btn">
+        Изтрий кошер
+      </button>
     </ng-container>
     <!-- Edit mode -->
     <ng-container *ngIf="editMode">
       <div class="data">
-        <div class="field">
-          <label>Тип:</label>
-          <input
-            id="hiveType"
-            name="hiveType"
-            type="text"
-            placeholder="{{ hive.hiveType }}"
-            readonly
-          />
-        </div>
-        <div class="field">
-          <label>Майка:</label>
-          <input
-            id="mother"
-            name="mother"
-            type="text"
-            placeholder="{{ hive.mother }}"
-            readonly
-          />
-        </div>
-        <div class="field">
-          <label for="">Пило (бр.рамки):</label>
-          <input
-            id="brood"
-            name="brood"
-            type="number"
-            placeholder="{{ hive.brood }}"
-            readonly
-          />
-        </div>
-        <div class="field">
-          <label for="">Пчели (бр.междурамия):</label>
-          <input
-            id="bees"
-            name="bees"
-            type="number"
-            placeholder="{{ hive.bees }}"
-            readonly
-          />
-        </div>
+        <form [formGroup]="form">
+          <div class="field">
+            <label for="hiveType">Тип:</label>
+            <select
+              type="text"
+              name="hiveType"
+              id="hiveType"
+              autofocus
+              required
+              [value]="hive.hiveType"
+              formControlName="hiveType"
+            >
+              <option value="Дадан-Блат">Дадан-Блат</option>
+              <option value="Лангстрот-Рут">Лангстрот-Рут</option>
+              <option value="Фарар">Фарар</option>
+            </select>
+          </div>
+          <ng-container *ngIf="form.get('hiveType')?.touched">
+            <p *ngIf="form.get('hiveType')?.errors?.['required']" class="error">
+              Моля въведете типът кошер!
+            </p>
+          </ng-container>
+          <div class="field">
+            <label>Майка:</label>
+            <input
+              id="mother"
+              name="mother"
+              type="text"
+              placeholder="{{ hive.mother }}"
+              [value]="hive.mother"
+              required
+              formControlName="mother"
+            />
+          </div>
+          <ng-container *ngIf="form.get('mother')?.touched">
+            <p *ngIf="form.get('mother')?.errors?.['required']" class="error">
+              Моля въведете данни за майката!
+            </p>
+          </ng-container>
+          <div class="field">
+            <label for="">Пило (бр.рамки):</label>
+            <input
+              id="brood"
+              name="brood"
+              type="number"
+              placeholder="{{ hive.brood }}"
+              [value]="hive.brood"
+              required
+              formControlName="brood"
+            />
+          </div>
+          <ng-container *ngIf="form.get('brood')?.touched">
+            <p *ngIf="form.get('brood')?.errors?.['required']" class="error">
+              Моля въведете данни за пилото!
+            </p>
+          </ng-container>
+          <div class="field">
+            <label for="">Пчели (бр.междурамия):</label>
+            <input
+              id="bees"
+              name="bees"
+              type="number"
+              placeholder="{{ hive.bees }}"
+              [value]="hive.bees"
+              required
+              formControlName="bees"
+            />
+          </div>
+          <ng-container *ngIf="form.get('bees')?.touched">
+            <p *ngIf="form.get('bees')?.errors?.['required']" class="error">
+              Моля въведете данни за пчелите!
+            </p>
+          </ng-container>
+        </form>
       </div>
+
       <button (click)="save()" class="save-btn">Запази</button>
-      <button (click)="cancel()" class="cancel-btn">Отмени</button>
+      <button (click)="onCancel()" class="cancel-btn">Назад</button>
     </ng-container>
   </div>
 </div>

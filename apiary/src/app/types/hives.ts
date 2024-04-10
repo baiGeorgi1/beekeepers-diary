@@ -7,13 +7,13 @@ export interface Hives {
   hiveNumber: number;
   userId: string;
   bees: number;
-  mother?: string;
-  brood?: number;
+  mother: string;
+  brood: number;
 }
 
-export interface HiveDetails {
-  _id: string;
-  hiveType: string;
-  frames: number;
-  bees?: number;
-}
+// export interface HiveDetails {
+//   _id: string;
+//   hiveType: string;
+//   frames: number;
+//   bees?: number;
+// }

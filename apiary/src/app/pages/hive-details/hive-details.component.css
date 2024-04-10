@@ -65,6 +65,11 @@ input {
   font-style: italic;
   opacity: 0.5;
 }
+/*  BUTTONS */
+.buttons {
+  flex: 1 0 100%;
+  display: inline-block;
+}
 .edit-btn,
 .save-btn,
 .cancel-btn {
@@ -82,18 +87,36 @@ input {
 .save-btn,
 .cancel-btn {
   display: block;
-  width: 40%;
+  width: 30%;
 }
 .save-btn:hover,
-.edit-btn:hover {
+.edit-btn:hover,
+.cancel-btn:hover {
   background-color: green;
   color: white;
-}
-.cancel-btn:hover {
-  background-color: red;
-  color: white;
+  border: 2px solid rgb(58, 237, 58);
+  box-shadow: 0 0 5px 1px rgb(58, 237, 58);
 }
 
+.delete-btn {
+  width: 20%;
+  margin: 1em auto;
+  padding: 1em;
+  border: 2px solid rgb(243, 43, 43);
+  box-shadow: 0 0 5px 1px rgb(243, 43, 43);
+  border-radius: 25px;
+  background-color: red;
+  color: white;
+  font-size: 0.8em;
+  font-weight: 700;
+}
+.delete-btn:hover {
+  background-color: red;
+  color: white;
+  border: 2px solid black;
+  box-shadow: 0 0 5px 1px black;
+}
+/* /buttons */
 .img-container {
   display: flex;
   flex-direction: column;

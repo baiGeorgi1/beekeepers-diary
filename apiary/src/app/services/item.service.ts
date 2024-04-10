@@ -18,6 +18,20 @@ export class ItemService {
   getHive(id: string) {
     return this.http.get<Hives>(`${itemURL}/${id}`);
   }
+  updateHive(
+    id: string,
+    hiveType: string,
+    mother: string,
+    brood: number,
+    bees: number
+  ): Observable<Hives> {
+    return this.http.put<Hives>(`${itemURL}/${id}`, {
+      hiveType,
+      mother,
+      brood,
+      bees,
+    });
+  }
   createHive(data: Hives): Observable<Hives> {
     const token = environment.USER_KEY;
 
@@ -33,5 +47,9 @@ export class ItemService {
     //TODO
     console.log('HERE', userId);
     return this.http.get<Hives[]>(`${itemURL}/hives`);
+  }
+  deleteHive(hiveId: string): Observable<unknown> {
+    const URL = `${itemURL}/${hiveId}`;
+    return this.http.delete<unknown>(URL);
   }
 }

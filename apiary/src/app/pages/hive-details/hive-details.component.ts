@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, NgForm, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
+import { routes } from 'src/app/app-routing.module';
 import { ItemService } from 'src/app/services/item.service';
 import { Hives } from 'src/app/types/hives';
 
@@ -10,30 +12,67 @@ import { Hives } from 'src/app/types/hives';
   styleUrls: ['./hive-details.component.css'],
 })
 export class HiveDetailsComponent implements OnInit {
-  form = this.fb.group({});
-  hive = {} as Hives;
+  subscribe$!: Subscription;
+  errorMessage!: string;
+  hive!: Hives;
+  form = this.fb.group({
+    hiveType: ['', Validators.required],
+    mother: ['', Validators.required],
+    brood: [0, Validators.required],
+    bees: [0, Validators.required],
+  });
+  // hive = {} as Hives;
 
   editMode: boolean = false;
+  hiveId: string = '';
 
   constructor(
     private fb: FormBuilder,
     private api: ItemService,
+    private router: Router,
     private activeRoute: ActivatedRoute
   ) {}
   ngOnInit(): void {
     this.activeRoute.params.subscribe((data) => {
-      const id = data['hive-details'];
-      this.api.getHive(id).subscribe((hive) => {
+      this.hiveId = data['hive-details'];
+      this.api.getHive(this.hiveId).subscribe((hive) => {
         this.hive = hive;
         console.log(hive);
       });
     });
+
+    this.form.setValue({
+      hiveType: this.hive.hiveType,
+      mother: this.hive.mother,
+      brood: this.hive.brood,
+      bees: this.hive.bees,
+    });
   }
-  editDetails(): void {
+  changeView(): void {
     this.editMode = true;
   }
-  cancel(): void {
+  onCancel(): void {
     this.editMode = false;
   }
-  save(): void {}
+  save() {
+    console.log('Invoked: ', this.form.value);
+
+    if (this.form.invalid) {
+      return;
+    }
+    this.hive = this.form.value as Hives;
+    const { hiveType, mother, brood, bees } = this.hive;
+    this.api
+      .updateHive(this.hiveId, hiveType, mother, brood, bees)
+      .subscribe(() => {
+        this.editMode = false;
+      });
+  }
+  onDelete(hiveId: string): void {
+    console.log('onDelete', hiveId);
+    this.subscribe$ = this.api.deleteHive(hiveId).subscribe({
+      error: (error) => (this.errorMessage = error.error.mesage),
+      complete: () => this.router.navigate(['dashboard/info']),
+    });
+  }
 }

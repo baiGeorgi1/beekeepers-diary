@@ -19,11 +19,7 @@ export class AddHiveComponent {
   subscribe$!: Subscription;
   errorMsg!: string;
 
-  constructor(
-    private userService: UserService,
-    private api: ItemService,
-    private router: Router
-  ) {}
+  constructor(private userService: UserService, private api: ItemService) {}
 
   public get userId(): string {
     return this.userService.getUser()._id;
@@ -49,7 +45,6 @@ export class AddHiveComponent {
       error: (err) => {
         this.errorMsg = err.error.message;
       },
-      complete: () => {},
     });
   }
 }
