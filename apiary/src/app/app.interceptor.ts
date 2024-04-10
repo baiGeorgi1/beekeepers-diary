@@ -6,17 +6,23 @@ import {
   HttpInterceptor,
   HTTP_INTERCEPTORS,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
 
 import { UserService } from './services/user.service';
 
 import { environment } from 'src/environments/environment.development';
+import { ErrorService } from './core/errorHandling/error.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
   userUrl = environment.userURL;
   API = '/users';
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private errorService: ErrorService,
+    private router: Router
+  ) {}
 
   intercept(
     req: HttpRequest<any>,
@@ -38,7 +44,18 @@ export class AppInterceptor implements HttpInterceptor {
       },
     });
 
-    return next.handle(req);
+    // return next.handle(req);
+    return next.handle(req).pipe(
+      catchError((err) => {
+        if (err.status === 401) {
+          this.router.navigate(['/auth/login']);
+        } else {
+          this.errorService.setError(err);
+          this.router.navigate(['/error']);
+        }
+        return [err];
+      })
+    );
   }
 }
 export const appInterceptorProvider: Provider = {
