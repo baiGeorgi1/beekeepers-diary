@@ -50,6 +50,11 @@ export class AppInterceptor implements HttpInterceptor {
             catchError((err) => {
                 if (err.status === 401) {
                     this.router.navigate(["/auth/login"]);
+                } else if (err.status === 403) {
+                    err.message = "Грешен потребител или парола!";
+
+                    this.errorService.setError(err);
+                    this.router.navigate(["/auth/login"]);
                 } else if (err.status === 404 && accessToken) {
                     this.router.navigate(["/dashboard/info"]);
                 } else {
