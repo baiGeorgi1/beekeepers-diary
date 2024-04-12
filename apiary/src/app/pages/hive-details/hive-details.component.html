@@ -1,150 +1,189 @@
 <div class="background">
-  <div class="container">
-    <div class="text" *ngIf="!deleteMode">
-      <h3>Данни за кошер No: {{ hive.hiveNumber }}</h3>
-    </div>
-    <div class="img-container" *ngIf="!deleteMode">
-      <img src="../../../assets/images/hiveProfile.jpg" alt="" />
-    </div>
-    <!-- Read only -->
-    <ng-container *ngIf="!editMode && !deleteMode">
-      <div class="data">
-        <div class="field">
-          <label>Тип:</label>
-          <input
-            id="hiveType"
-            name="hiveType"
-            type="text"
-            placeholder="{{ hive.hiveType }}"
-            readonly
-          />
+    <div class="container">
+        <div class="text" *ngIf="!deleteMode">
+            <h3>Данни за кошер No: {{ hive.hiveNumber }}</h3>
         </div>
-        <div class="field">
-          <label>Майка:</label>
-          <input
-            id="mother"
-            name="mother"
-            type="text"
-            placeholder="{{ hive.mother }}"
-            readonly
-          />
+        <div class="img-container" *ngIf="!deleteMode">
+            <img src="../../../assets/images/hiveProfile.jpg" alt="" />
         </div>
-        <div class="field">
-          <label for="">Пило (бр.рамки):</label>
-          <input
-            id="brood"
-            name="brood"
-            type="number"
-            placeholder="{{ hive.brood }}"
-            readonly
-          />
-        </div>
-        <div class="field">
-          <label for="">Пчели (бр.междурамия):</label>
-          <input
-            id="bees"
-            name="bees"
-            type="number"
-            placeholder="{{ hive.bees }}"
-            readonly
-          />
-        </div>
-      </div>
-      <button (click)="changeView()" class="edit-btn">Промени</button>
-      <button routerLink="/dashboard/info" class="back-btn">Назад</button>
-      <button (click)="deleteMode = true" class="delete-btn">
-        Изтрий кошер
-      </button>
-    </ng-container>
-    <!-- Edit mode -->
-    <ng-container *ngIf="editMode && !deleteMode">
-      <div class="data">
-        <form [formGroup]="form">
-          <div class="field">
-            <label for="hiveType">Тип:</label>
-            <select
-              name="hiveType"
-              id="hiveType"
-              type="text"
-              [value]="hive.hiveType"
-              required
-              formControlName="hiveType"
-            >
-              <option value="">{{ hive.hiveType }}</option>
-              <option value="Дадан-Блат">Дадан-Блат</option>
-              <option value="Лангстрот-Рут">Лангстрот-Рут</option>
-              <option value="Фарар">Фарар</option>
-            </select>
-          </div>
-          <ng-container *ngIf="form.get('hiveType')?.touched">
-            <p *ngIf="form.get('hiveType')?.errors?.['required']" class="error">
-              Моля въведете типът кошер!
-            </p>
-          </ng-container>
-          <div class="field">
-            <label>Майка:</label>
-            <input
-              id="mother"
-              name="mother"
-              type="text"
-              placeholder="{{ hive.mother }}"
-              [value]="hive.mother"
-              required
-              formControlName="mother"
-            />
-          </div>
-          <ng-container *ngIf="form.get('mother')?.touched">
-            <p *ngIf="form.get('mother')?.errors?.['required']" class="error">
-              Моля въведете данни за майката!
-            </p>
-          </ng-container>
-          <div class="field">
-            <label for="">Пило (бр.рамки):</label>
-            <input
-              id="brood"
-              name="brood"
-              type="number"
-              placeholder="{{ hive.brood }}"
-              [value]="hive.brood"
-              required
-              formControlName="brood"
-            />
-          </div>
-          <ng-container *ngIf="form.get('brood')?.touched">
-            <p *ngIf="form.get('brood')?.errors?.['required']" class="error">
-              Моля въведете данни за пилото!
-            </p>
-          </ng-container>
-          <div class="field">
-            <label for="">Пчели (бр.междурамия):</label>
-            <input
-              id="bees"
-              name="bees"
-              type="number"
-              placeholder="{{ hive.bees }}"
-              [value]="hive.bees"
-              required
-              formControlName="bees"
-            />
-          </div>
-          <ng-container *ngIf="form.get('bees')?.touched">
-            <p *ngIf="form.get('bees')?.errors?.['required']" class="error">
-              Моля въведете данни за пчелите!
-            </p>
-          </ng-container>
-        </form>
-      </div>
+        <!-- Read only -->
+        <ng-container *ngIf="!editMode && !deleteMode">
+            <div class="data">
+                <div class="field">
+                    <label>Тип:</label>
+                    <input
+                        id="hiveType"
+                        name="hiveType"
+                        type="text"
+                        placeholder="{{ hive.hiveType }}"
+                        readonly
+                    />
+                </div>
+                <div class="field">
+                    <label>Майка:</label>
+                    <input
+                        id="mother"
+                        name="mother"
+                        type="text"
+                        placeholder="{{ hive.mother }}"
+                        readonly
+                    />
+                </div>
+                <div class="field">
+                    <label for="">Пило (бр.рамки):</label>
+                    <input
+                        id="brood"
+                        name="brood"
+                        type="number"
+                        placeholder="{{ hive.brood }}"
+                        readonly
+                    />
+                </div>
+                <div class="field">
+                    <label for="">Пчели (бр.междурамия):</label>
+                    <input
+                        id="bees"
+                        name="bees"
+                        type="number"
+                        placeholder="{{ hive.bees }}"
+                        readonly
+                    />
+                </div>
+            </div>
+            <button (click)="changeView()" class="edit-btn">Промени</button>
+            <button routerLink="/dashboard/info" class="back-btn">Назад</button>
+            <button (click)="deleteMode = true" class="delete-btn">
+                Изтрий кошер
+            </button>
+        </ng-container>
+        <!-- Edit mode -->
+        <ng-container *ngIf="editMode && !deleteMode">
+            <div class="data">
+                <form [formGroup]="form">
+                    <div class="field">
+                        <label for="hiveType">Тип:</label>
+                        <select
+                            name="hiveType"
+                            id="hiveType"
+                            type="text"
+                            [ariaPlaceholder]="hive.hiveType"
+                            [value]="hive.hiveType"
+                            required
+                            formControlName="hiveType"
+                        >
+                            <option value=""></option>
+                            <option value="Дадан-Блат">Дадан-Блат</option>
+                            <option value="Лангстрот-Рут">Лангстрот-Рут</option>
+                            <option value="Фарар">Фарар</option>
+                        </select>
+                    </div>
+                    <ng-container *ngIf="form.get('hiveType')?.touched">
+                        <p
+                            *ngIf="form.get('hiveType')?.errors?.['required']"
+                            class="error"
+                        >
+                            Моля въведете типът кошер!
+                        </p>
+                    </ng-container>
+                    <div class="field">
+                        <label>Майка:</label>
+                        <input
+                            id="mother"
+                            name="mother"
+                            type="text"
+                            placeholder="{{ hive.mother }}"
+                            [value]="hive.mother"
+                            required
+                            formControlName="mother"
+                        />
+                    </div>
+                    <ng-container *ngIf="form.get('mother')?.touched">
+                        <p
+                            *ngIf="form.get('mother')?.errors?.['required']"
+                            class="error"
+                        >
+                            Моля въведете данни за майката!
+                        </p>
+                    </ng-container>
+                    <div class="field">
+                        <label for="">Пило (бр.рамки):</label>
+                        <input
+                            id="brood"
+                            name="brood"
+                            type="number"
+                            placeholder="{{ hive.brood }}"
+                            [value]="hive.brood"
+                            required
+                            min="0"
+                            max="{{ hive.frames - 1 }}"
+                            formControlName="brood"
+                        />
+                    </div>
+                    <ng-container *ngIf="form.get('brood')?.touched">
+                        <p
+                            *ngIf="form.get('brood')?.errors?.['required']"
+                            class="error"
+                        >
+                            Моля въведете данни за пилото!
+                        </p>
+                        <div
+                            *ngIf="form.get('brood')?.errors?.['max'] || form.get('brood')?.errors?.['min']"
+                            class="error"
+                        >
+                            <p>
+                                Броят трябва да е между 0<br />
+                                и бр. на рамките в кошера!
+                            </p>
+                        </div>
+                    </ng-container>
+                    <div class="field">
+                        <label for="">Пчели (бр.междурамия):</label>
+                        <input
+                            id="bees"
+                            name="bees"
+                            type="number"
+                            placeholder="{{ hive.bees }}"
+                            [value]="hive.bees"
+                            required
+                            min="0"
+                            max="{{ hive.frames - 1 }}"
+                            formControlName="bees"
+                        />
+                    </div>
+                    <ng-container *ngIf="form.get('bees')?.touched">
+                        <p
+                            *ngIf="form.get('bees')?.errors?.['required']"
+                            class="error"
+                        >
+                            Моля въведете данни за пчелите!
+                        </p>
+                        <div
+                            *ngIf="form.get('bees')?.errors?.['max'] || form.get('bees')?.errors?.['min']"
+                            class="error"
+                        >
+                            <p>
+                                Броят трябва да е между 0<br />
+                                и бр. на рамките в кошера!
+                            </p>
+                        </div>
+                    </ng-container>
+                </form>
+            </div>
 
-      <button (click)="save()" class="save-btn">Запази</button>
-      <button (click)="onCancel()" class="cancel-btn">Отмени</button>
-    </ng-container>
-    <ng-container *ngIf="deleteMode">
-      <h2>
-        Сигурни ли сте, че искате да изтриете кошер No:{{ hive.hiveNumber }}
-      </h2>
+            <button (click)="save()" class="save-btn">Запази</button>
+            <button (click)="onCancel()" class="cancel-btn">Отмени</button>
+        </ng-container>
+        <ng-container *ngIf="deleteMode">
+            <h2>
+                Сигурни ли сте, че искате да изтриете кошер No:{{
+                    hive.hiveNumber
+                }}
+            </h2>
 
-      <button (click)="onDelete(hive._id)" class="delete-btn">Изтрий</button>
-      <button (click)="onCancel()" class="edit-btn">Назад</button>
-    </ng-container>
-  </div>
+            <button (click)="onDelete(hive._id)" class="delete-btn">
+                Изтрий
+            </button>
+            <button (click)="onCancel()" class="edit-btn">Назад</button>
+        </ng-container>
+    </div>
 </div>

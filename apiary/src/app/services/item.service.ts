@@ -19,6 +19,7 @@ export class ItemService {
         return this.http.get<Hives>(`${itemURL}/${id}`);
     }
     updateHive(
+        hive: Hives,
         id: string,
         hiveType: string,
         mother: string,
@@ -26,6 +27,7 @@ export class ItemService {
         bees: number,
     ): Observable<Hives> {
         return this.http.put<Hives>(`${itemURL}/${id}`, {
+            ...hive,
             hiveType,
             mother,
             brood,
