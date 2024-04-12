@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { ErrorService } from "src/app/core/errorHandling/error.service";
 import { ItemService } from "src/app/services/item.service";
 import { UserService } from "src/app/services/user.service";
 import { Hives } from "src/app/types/hives";
@@ -11,7 +12,11 @@ import { Hives } from "src/app/types/hives";
 export class InfoComponent implements OnInit {
     hives: Hives[] = [];
 
-    constructor(private api: ItemService, private userService: UserService) {}
+    constructor(
+        private api: ItemService,
+        private userService: UserService,
+        private errorService: ErrorService,
+    ) {}
 
     public get userId(): string {
         return this.userService.getUser()!._id;
@@ -27,9 +32,7 @@ export class InfoComponent implements OnInit {
                 }
             },
             error: () => {},
-            complete: () => {
-                console.log(this.hives);
-            },
+            complete: () => {},
         });
     }
 }

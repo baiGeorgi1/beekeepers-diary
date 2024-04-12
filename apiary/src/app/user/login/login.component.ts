@@ -1,50 +1,51 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Title } from '@angular/platform-browser';
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { FormBuilder, Validators } from "@angular/forms";
+import { Title } from "@angular/platform-browser";
 
-import { Router } from '@angular/router';
-import { emailValidator } from 'src/app/shared/utils/email-validator';
-import { UserService } from 'src/app/services/user.service';
+import { Router } from "@angular/router";
+import { emailValidator } from "src/app/shared/utils/email-validator";
+import { UserService } from "src/app/services/user.service";
+import { ErrorService } from "src/app/core/errorHandling/error.service";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+    selector: "app-login",
+    templateUrl: "./login.component.html",
+    styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  form = this.fb.group({
-    email: ['', [Validators.required, emailValidator()]],
-    password: ['', [Validators.required]],
-  });
+    form = this.fb.group({
+        email: ["", [Validators.required, emailValidator()]],
+        password: ["", [Validators.required]],
+    });
 
-  constructor(
-    private fb: FormBuilder,
-    private userService: UserService,
-    private router: Router
-  ) {}
+    constructor(
+        private fb: FormBuilder,
+        private userService: UserService,
+        private router: Router,
+    ) {}
 
-  ngOnInit(): void {}
+    ngOnInit(): void {}
 
-  login(): void {
-    // console.log(this.form.value);
-    if (this.form.invalid) {
-      return;
+    login(): void {
+        // console.log(this.form.value);
+        if (this.form.invalid) {
+            return;
+        }
+        const { email, password } = this.form.value;
+        this.userService.userSubscribtion = this.userService
+            .login(email!, password!)
+            .subscribe({
+                next: (userData) => {
+                    this.userService.setUser(userData);
+                    this.router.navigate(["/dashboard"]);
+                },
+                //TODO
+                error: () => {},
+            });
     }
-    const { email, password } = this.form.value;
-    this.userService.userSubscribtion = this.userService
-      .login(email!, password!)
-      .subscribe({
-        next: (userData) => {
-          this.userService.setUser(userData);
-          this.router.navigate(['/dashboard/info']);
-        },
-        //TODO
-        error: () => {},
-      });
-  }
-  ngOnDestroy(): void {
-    if (this.userService.userSubscribtion != undefined) {
-      this.userService.userSubscribtion.unsubscribe();
+    ngOnDestroy(): void {
+        if (this.userService.userSubscribtion != undefined) {
+            this.userService.userSubscribtion.unsubscribe();
+        }
     }
-  }
 }

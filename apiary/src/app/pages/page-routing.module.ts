@@ -4,7 +4,6 @@ import { HomeComponent } from "./home/home.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { loggedInGuard } from "../guards/is-logged.guard";
 import { AddHiveComponent } from "./add-hive/add-hive.component";
-import { InfoComponent } from "./info/info.component";
 import { TasksComponent } from "./tasks/tasks.component";
 import { HiveDetailsComponent } from "./hive-details/hive-details.component";
 

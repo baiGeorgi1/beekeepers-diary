@@ -39,9 +39,6 @@ export class HiveDetailsComponent implements OnInit, OnDestroy {
             this.subscribe$ = this.api.getHive(this.hiveId).subscribe({
                 next: (hive) => {
                     this.hive = hive;
-                    console.log(this.hive);
-
-                    console.log("Frames:", this.hive.frames);
 
                     this.form.setValue({
                         hiveType: this.hive.hiveType,
@@ -66,9 +63,7 @@ export class HiveDetailsComponent implements OnInit, OnDestroy {
         if (this.form.invalid) {
             return;
         }
-
         this.hive = { ...this.hive, ...this.form.value } as Hives;
-        console.log("before save", this.hive);
 
         const { hiveType, mother, brood, bees } = this.hive;
         this.subscribe$ = this.api

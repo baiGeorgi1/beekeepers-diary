@@ -13,7 +13,7 @@ import { UserService } from "./services/user.service";
 import { environment } from "src/environments/environment.development";
 import { ErrorService } from "./core/errorHandling/error.service";
 import { Router } from "@angular/router";
-
+const { itemURL, taskURL } = environment;
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
     userUrl = environment.userURL;
@@ -55,8 +55,22 @@ export class AppInterceptor implements HttpInterceptor {
 
                     this.errorService.setError(err);
                     this.router.navigate(["/auth/login"]);
-                } else if (err.status === 404 && accessToken) {
-                    this.router.navigate(["/dashboard/info"]);
+                } else if (
+                    err.status === 404 &&
+                    accessToken &&
+                    req.url === itemURL
+                ) {
+                    console.log(req.url);
+
+                    this.router.navigate(["/dashboard"]);
+                } else if (
+                    err.status === 404 &&
+                    accessToken &&
+                    req.url === taskURL
+                ) {
+                    console.log(req.url);
+
+                    this.router.navigate(["/users/profile"]);
                 } else {
                     this.errorService.setError(err);
                     this.router.navigate(["/error"]);

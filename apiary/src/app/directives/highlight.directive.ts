@@ -1,11 +1,9 @@
 import {
     Directive,
     ElementRef,
-    OnChanges,
     OnDestroy,
     OnInit,
     Renderer2,
-    SimpleChanges,
 } from "@angular/core";
 
 type MyVoid = () => void;
@@ -19,7 +17,7 @@ export class HighlightDirective implements OnInit, OnDestroy {
     constructor(private elRef: ElementRef, private render: Renderer2) {}
 
     ngOnInit(): void {
-        console.log(this.elRef.nativeElement);
+        //  console.log(this.elRef.nativeElement);
 
         const mouseEnter = this.render.listen(
             this.elRef.nativeElement,
@@ -36,8 +34,6 @@ export class HighlightDirective implements OnInit, OnDestroy {
     }
 
     mouseEnterHandler(e: MouseEvent): void {
-        console.log(this.render);
-
         this.render.addClass(this.elRef.nativeElement, "active");
     }
 

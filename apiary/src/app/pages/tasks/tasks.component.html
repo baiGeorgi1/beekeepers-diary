@@ -4,7 +4,7 @@
             <h3>Бележки</h3>
         </div>
         <div class="data">
-            <form>
+            <form [formGroup]="form">
                 <div class="field" row="10">
                     <textarea
                         id="task"
@@ -12,15 +12,20 @@
                         rows="10"
                         type="text"
                         autofocus
+                        formControlName="task"
                     ></textarea>
                 </div>
-                <!-- <ng-container>
-                    <p class="error">Моля въведете типът кошер!</p>
-                </ng-container> -->
+                <ng-container *ngIf="form.get('task')?.touched">
+                    <p
+                        *ngIf="form.get('task')?.errors?.['required']"
+                        class="error"
+                    >
+                        Моля въведете текст!
+                    </p>
+                </ng-container>
+                <button (click)="addTask()" class="save-btn">Запази</button>
+                <button (click)="onCancel()" class="cancel-btn">Отмени</button>
             </form>
         </div>
-
-        <button class="save-btn">Запази</button>
-        <button (click)="onCancel()" class="cancel-btn">Отмени</button>
     </div>
 </div>

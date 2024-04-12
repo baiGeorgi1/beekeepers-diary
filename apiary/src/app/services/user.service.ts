@@ -44,7 +44,7 @@ export class UserService {
             .pipe(
                 tap((user) => {
                     this.user$$.next(user);
-                    console.log(user);
+                    //console.log(user);
                 }),
             );
     }

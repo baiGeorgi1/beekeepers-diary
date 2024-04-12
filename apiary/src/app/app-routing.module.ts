@@ -1,7 +1,5 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-
-import { NotFoundComponent } from "./pages/not-found/not-found.component";
 import { ErrorComponent } from "./core/errorHandling/error.component";
 
 export const routes: Routes = [

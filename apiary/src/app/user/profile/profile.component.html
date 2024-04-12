@@ -1,99 +1,24 @@
-<div class="background">
-  <div class="container">
-    <div class="data">
-      <!-- Read only -->
-      <ng-container *ngIf="!editMode">
-        <div class="field">
-          <label for="email">Email:</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            placeholder="email"
-            formControlName="email"
-            [value]="user.email"
-          />
+<div class="body">
+    <div class="main">
+        <div *ngIf="tasks.length === 0" class="empty">
+            <h1>Нямате записани бележки!</h1>
         </div>
-        <div class="field">
-          <label for="username">Username:</label>
-          <input
-            id="username"
-            name="username"
-            type="text"
-            placeholder="username"
-            formControlName="username"
-            [value]="user.username"
-          />
-        </div>
+        <ng-container *ngIf="tasks.length > 0" class="loaded">
+            <div class="text"><h1>Моите бележки!</h1></div>
+            <div *ngFor="let task of tasks" class="quality-box">
+                <figure class="item-fig">
+                    <img
+                        class="item-img"
+                        src="../../../assets/images/notes.png"
+                        alt="notes"
+                    />
 
-        <button class="form-btn edit" (click)="onEdit()">Промени</button>
-      </ng-container>
+                    <p>От:</p>
 
-      <!-- Edit -->
-      <ng-container *ngIf="editMode">
-        <form [formGroup]="form" (ngSubmit)="onSave()">
-          <div class="field">
-            <label for="email">Email:</label>
-
-            <input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="email"
-              formControlName="email"
-              [value]="user.email"
-            />
-          </div>
-          <ng-container *ngIf="form.get('email')?.touched">
-            <p
-              class="error"
-              *ngIf="form.get('email')?.errors?.['emailValidator']"
-            >
-              Email is not valid!
-            </p>
-            <!-- <p
-                          class="error"
-                          *ngIf="form.get('email')?.errors?.['required']"
-                      >
-                          Email is required!
-                      </p> -->
-          </ng-container>
-          <div class="field">
-            <label for="username">Username:</label>
-            <input
-              id="username"
-              name="ussername"
-              type="text"
-              placeholder="username"
-              formControlName="username"
-              [value]="user.username"
-            />
-          </div>
-          <ng-container *ngIf="form.get('username')?.touched">
-            <p
-              class="error"
-              *ngIf="form.get('username')?.errors?.['minlength']"
-            >
-              Atleast 4 characters needed!
-            </p>
-            <!-- <p
-                          class="error"
-                          *ngIf="form.get('username')?.errors?.['required']"
-                      >
-                          Username is requred!
-                      </p> -->
-          </ng-container>
-
-          <button
-            class="form-btn save"
-            [disabled]="form.invalid"
-            [style]="{ backgroundColor: form.invalid ? '#9a3501' : '' }"
-          >
-            Запази
-          </button>
-          <button class="form-btn cancel" (click)="cancel()">Отмени</button>
-        </form>
-      </ng-container>
+                    <!-- routerLink="/dashboard/hive-details/{{ hive._id }}" -->
+                    <button class="form-btn">Виж</button>
+                </figure>
+            </div>
+        </ng-container>
     </div>
-  </div>
 </div>

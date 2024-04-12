@@ -3,8 +3,9 @@ import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment.development";
 import { Hives } from "../types/hives";
 import { Observable } from "rxjs";
+import { Tasks } from "../types/tasks";
 
-const { itemURL } = environment;
+const { itemURL, taskURL } = environment;
 @Injectable({
     providedIn: "root",
 })
@@ -45,13 +46,22 @@ export class ItemService {
         });
     }
 
-    getItems(userId: string): Observable<Hives[]> {
-        //TODO
-        console.log("HERE", userId);
-        return this.http.get<Hives[]>(`${itemURL}/hives`);
-    }
     deleteHive(hiveId: string): Observable<unknown> {
         const URL = `${itemURL}/${hiveId}`;
         return this.http.delete<unknown>(URL);
+    }
+    // ** TaskService
+    getUserTasks(): Observable<Tasks[]> {
+        return this.http.get<Tasks[]>(`${taskURL}`);
+    }
+    createTask(data: Tasks): Observable<Tasks> {
+        const token = environment.USER_KEY;
+
+        return this.http.post<Tasks>(`${taskURL}`, data, {
+            headers: {
+                "Content-Type": "application/json",
+                "X-Authorization": token,
+            },
+        });
     }
 }
