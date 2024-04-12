@@ -13,12 +13,7 @@
                     >
                 </li>
                 <li id="tasks">
-                    <a
-                        (click)="clicked($event)"
-                        routerLink="/dashboard"
-                        class="vert-nav"
-                        >Задачи</a
-                    >
+                    <a (click)="clicked($event)" class="vert-nav">Задачи</a>
                 </li>
             </ul>
         </div>
@@ -32,6 +27,12 @@
             (isCreateHiveChanged)="isCreateHive = $event"
             *ngIf="isCreateHive"
         ></app-add-hive>
-        <app-tasks *ngIf="isTask"></app-tasks>
+        <app-tasks
+            *ngIf="isTask"
+            [isInfo]="isInfo"
+            (isInfoChanged)="isInfo = $event"
+            [isTask]="isTask"
+            (isTaskChange)="(isTask)"
+        ></app-tasks>
     </div>
 </div>

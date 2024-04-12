@@ -1,15 +1,4 @@
-import {
-    AfterViewInit,
-    Component,
-    DoCheck,
-    ElementRef,
-    OnChanges,
-    OnInit,
-    Renderer2,
-    SimpleChange,
-    SimpleChanges,
-} from "@angular/core";
-import { FormBuilder, NgForm, Validators } from "@angular/forms";
+import { Component, DoCheck, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
 
@@ -60,6 +49,7 @@ export class DashboardComponent implements OnInit, DoCheck {
         if (this.isInfo) {
             document.getElementById("info")?.classList.add("active");
             document.getElementById("create-hive")?.classList.remove("active");
+            document.getElementById("tasks")?.classList.remove("active");
         }
     }
 
@@ -77,7 +67,6 @@ export class DashboardComponent implements OnInit, DoCheck {
 
         switch (id) {
             case "info":
-                // this.router.navigate(['/info']);
                 this.isInfo = true;
                 this.isCreateHive = false;
                 this.isTask = false;

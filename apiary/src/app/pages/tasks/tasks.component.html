@@ -1,3 +1,26 @@
 <div class="tasks">
-  <p>tasks works!</p>
+    <div class="container">
+        <div class="text">
+            <h3>Бележки</h3>
+        </div>
+        <div class="data">
+            <form>
+                <div class="field" row="10">
+                    <textarea
+                        id="task"
+                        name="task"
+                        rows="10"
+                        type="text"
+                        autofocus
+                    ></textarea>
+                </div>
+                <!-- <ng-container>
+                    <p class="error">Моля въведете типът кошер!</p>
+                </ng-container> -->
+            </form>
+        </div>
+
+        <button class="save-btn">Запази</button>
+        <button (click)="onCancel()" class="cancel-btn">Отмени</button>
+    </div>
 </div>
