@@ -5,19 +5,26 @@
         </div>
         <ng-container *ngIf="tasks.length > 0" class="loaded">
             <div class="text"><h1>Моите бележки!</h1></div>
-            <div *ngFor="let task of tasks" class="quality-box">
-                <figure class="item-fig">
-                    <img
-                        class="item-img"
-                        src="../../../assets/images/notes.png"
-                        alt="notes"
-                    />
+            <div class="items">
+                <div *ngFor="let task of tasks" class="quality-box">
+                    <figure class="item-fig">
+                        <img
+                            class="item-img"
+                            src="../../../assets/images/notes.png"
+                            alt="notes"
+                        />
 
-                    <p>От:</p>
+                        <p>От: {{ task._createdOn | timePipe }}</p>
 
-                    <!-- routerLink="/dashboard/hive-details/{{ hive._id }}" -->
-                    <button class="form-btn">Виж</button>
-                </figure>
+                        <!-- routerLink="/dashboard/hive-details/{{ hive._id }}" -->
+                        <button
+                            routerLink="/dashboard/tasks/{{ task._id }}"
+                            class="form-btn"
+                        >
+                            Виж
+                        </button>
+                    </figure>
+                </div>
             </div>
         </ng-container>
     </div>

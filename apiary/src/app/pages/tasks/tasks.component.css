@@ -39,7 +39,7 @@
 form {
     align-items: center;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
 }
 label {
     display: block;
@@ -67,7 +67,6 @@ textarea {
 }
 .buttons {
     flex: 1 0 100%;
-    display: inline-block;
 }
 .save-btn,
 .cancel-btn {

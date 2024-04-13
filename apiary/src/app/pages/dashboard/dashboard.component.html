@@ -21,18 +21,16 @@
     <div class="content">
         <app-info *ngIf="isInfo"></app-info>
         <app-add-hive
+            *ngIf="isCreateHive"
             [isInfo]="isInfo"
             (isInfoChanged)="isInfo = $event"
             [isCreateHive]="isCreateHive"
             (isCreateHiveChanged)="isCreateHive = $event"
-            *ngIf="isCreateHive"
         ></app-add-hive>
         <app-tasks
             *ngIf="isTask"
             [isInfo]="isInfo"
             (isInfoChanged)="isInfo = $event"
-            [isTask]="isTask"
-            (isTaskChange)="(isTask)"
         ></app-tasks>
     </div>
 </div>

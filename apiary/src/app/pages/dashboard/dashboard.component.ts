@@ -1,9 +1,6 @@
 import { Component, DoCheck, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
 
-import { GlobalLoaderService } from "src/app/core/global-loader/global-loader.service";
-import { ItemService } from "src/app/services/item.service";
 import { UserService } from "src/app/services/user.service";
 import { Hives } from "src/app/types/hives";
 
@@ -29,12 +26,7 @@ export class DashboardComponent implements OnInit, DoCheck {
         return this.userService.getUser()._id || "";
     }
 
-    constructor(
-        private router: Router,
-        private globalLoader: GlobalLoaderService,
-        private userService: UserService,
-        private api: ItemService,
-    ) {}
+    constructor(private userService: UserService) {}
     ngOnInit(): void {
         // this.globalLoader.showLoader();
         // setTimeout(() => {

@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { InfoComponent } from "./info/info.component";
 import { TasksComponent } from "./tasks/tasks.component";
 import { HiveDetailsComponent } from "./hive-details/hive-details.component";
+import { TaskInfoComponent } from './task-info/task-info.component';
 
 @NgModule({
     declarations: [
@@ -21,6 +22,7 @@ import { HiveDetailsComponent } from "./hive-details/hive-details.component";
         InfoComponent,
         TasksComponent,
         HiveDetailsComponent,
+        TaskInfoComponent,
     ],
     imports: [
         CommonModule,

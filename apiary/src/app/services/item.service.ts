@@ -64,4 +64,7 @@ export class ItemService {
             },
         });
     }
+    getTask(id: string) {
+        return this.http.get<Tasks>(`${taskURL}/${id}`);
+    }
 }

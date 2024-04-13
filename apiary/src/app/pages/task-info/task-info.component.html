@@ -1,0 +1,25 @@
+<div class="background">
+    <div class="container">
+        <div class="text">
+            <h3>От: {{ task._createdOn | timePipe }}</h3>
+        </div>
+        <div class="img-container">
+            <img src="../../../assets/images/hiveProfile.jpg" alt="" />
+        </div>
+
+        <div class="data">
+            <textarea
+                id="taskType"
+                name="taskType"
+                type="text"
+                rows="10"
+                value="{{ task.task }}"
+                readonly
+            >
+            </textarea>
+
+            <button routerLink="/users/profile" class="back-btn">Назад</button>
+            <button class="delete-btn">Изтрий</button>
+        </div>
+    </div>
+</div>

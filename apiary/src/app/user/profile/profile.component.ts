@@ -1,10 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
+
 import { ItemService } from "src/app/services/item.service";
 import { UserService } from "src/app/services/user.service";
 import { Tasks } from "src/app/types/tasks";
-import { Profile, UserForAuth } from "src/app/types/user";
+import { UserForAuth } from "src/app/types/user";
 
 @Component({
     selector: "app-profile",
@@ -40,7 +41,9 @@ export class ProfileComponent implements OnInit {
             },
         });
     }
-    onEdit(): void {}
+    onView(): void {
+        console.log("ónView");
+    }
     cancel(): void {}
 
     onSave(): void {}

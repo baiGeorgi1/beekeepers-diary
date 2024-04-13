@@ -5,7 +5,7 @@ import {
     OnDestroy,
     Output,
 } from "@angular/core";
-import { FormBuilder, NgForm, Validators } from "@angular/forms";
+import { FormBuilder, Validators } from "@angular/forms";
 import { Subscription } from "rxjs";
 import { ItemService } from "src/app/services/item.service";
 import { Tasks } from "src/app/types/tasks";
@@ -17,9 +17,7 @@ import { Tasks } from "src/app/types/tasks";
 })
 export class TasksComponent implements OnDestroy {
     @Input() isInfo!: boolean;
-    @Input() isTask!: boolean;
     @Output() @Output() isInfoChanged = new EventEmitter<boolean>();
-    @Output() @Output() isTaskChanged = new EventEmitter<boolean>();
 
     task = {} as Tasks;
     subscribe$!: Subscription;
@@ -33,14 +31,13 @@ export class TasksComponent implements OnDestroy {
         if (this.form.invalid) {
             return;
         }
-
         this.task = this.form.value as Tasks;
 
-        console.log(this.task);
-
         this.subscribe$ = this.api.createTask(this.task).subscribe({
-            next: (task) => {
-                console.log(task);
+            next: () => {
+                this.isInfoChanged.emit(!this.isInfo);
+
+                this.form.reset();
             },
             error: () => {},
         });
@@ -48,7 +45,6 @@ export class TasksComponent implements OnDestroy {
 
     onCancel(): void {
         this.isInfoChanged.emit(!this.isInfo);
-        this.isTaskChanged.emit(!this.isTask);
     }
     ngOnDestroy(): void {
         if (this.subscribe$ != undefined) {
