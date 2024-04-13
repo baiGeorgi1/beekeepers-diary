@@ -35,15 +35,12 @@ export class ProfileComponent implements OnInit {
                 for (const key in task) {
                     if (this.userId == task[key]._ownerId) {
                         this.tasks.push(task[key]);
-                        console.log(task[key]);
                     }
                 }
             },
         });
     }
-    onView(): void {
-        console.log("ónView");
-    }
+    onView(): void {}
     cancel(): void {}
 
     onSave(): void {}
