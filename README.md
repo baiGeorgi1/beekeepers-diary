@@ -22,3 +22,25 @@
 
     -   Email: george@abv.bg
     -   Password: 123456
+
+## Features
+
+### User Features
+
+-   Register and login to an account
+-   Add hive to user apiary
+-   Edit or delete hive
+-   Add tasks (to do) to user profile
+-   Edit or delete tasks
+
+## Deployment
+
+### Backend Deployment
+
+Using SoftUni's practice server
+
+# ScreenShots
+
+## License
+
+This project is licensed under the MIT License
