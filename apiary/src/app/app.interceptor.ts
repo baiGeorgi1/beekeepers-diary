@@ -68,6 +68,11 @@ export class AppInterceptor implements HttpInterceptor {
                     req.url === taskURL
                 ) {
                     this.router.navigate(["/users/profile"]);
+                } else if (err.status === 409) {
+                    err.message = "Има потребител с този имейл!";
+
+                    this.errorService.setError(err);
+                    this.router.navigate(["/auth/login"]);
                 } else {
                     this.errorService.setError(err);
                     this.router.navigate(["/error"]);
