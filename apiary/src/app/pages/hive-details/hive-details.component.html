@@ -1,4 +1,9 @@
 <div class="background">
+    <div *ngIf="errorMessage" class="error-message">
+        <h3>
+            {{ errorMessage }}
+        </h3>
+    </div>
     <div class="container">
         <div class="text" *ngIf="!deleteMode">
             <h3>Данни за кошер No: {{ hive.hiveNumber }}</h3>

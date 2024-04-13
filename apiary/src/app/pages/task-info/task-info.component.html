@@ -1,4 +1,9 @@
 <div class="background">
+    <div *ngIf="errorMessage" class="error-message">
+        <h3>
+            {{ errorMessage }}
+        </h3>
+    </div>
     <ng-container *ngIf="isDeleting" class="modal">
         <div class="delete-container">
             <h2>

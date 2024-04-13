@@ -13,6 +13,7 @@ import { UserForAuth } from "src/app/types/user";
     styleUrls: ["./profile.component.css"],
 })
 export class ProfileComponent implements OnInit {
+    errorMessage!: string;
     user!: UserForAuth;
     tasks: Tasks[] = [];
 

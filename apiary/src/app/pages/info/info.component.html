@@ -1,5 +1,10 @@
 <div class="body">
     <div class="main">
+        <div *ngIf="errorMessage" class="error-message">
+            <h3>
+                {{ errorMessage }}
+            </h3>
+        </div>
         <div *ngIf="hives.length === 0" class="empty">
             <h1>Все още нямате добавени кошери!</h1>
         </div>

@@ -1,4 +1,9 @@
 <div class="body">
+    <div *ngIf="errorMessage" class="error-message">
+        <h3>
+            {{ errorMessage }}
+        </h3>
+    </div>
     <div class="main">
         <div *ngIf="tasks.length === 0" class="empty">
             <h1>Нямате записани бележки!</h1>

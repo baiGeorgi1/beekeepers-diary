@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit, DoCheck {
         // this.globalLoader.showLoader();
         // setTimeout(() => {
         //     this.globalLoader.hideLoader();
-        //   }, 2500);
+        // }, 2500);
         this.isInfo = true;
         this.isCreateHive = false;
         this.isTask = false;

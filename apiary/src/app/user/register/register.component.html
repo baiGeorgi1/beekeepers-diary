@@ -1,119 +1,114 @@
 <div class="background">
-  <div class="container">
-    <div class="data">
-      <form [formGroup]="form" (ngSubmit)="register()">
-        <div class="field">
-          <label for="email">Email:</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            placeholder="email"
-            formControlName="email"
-          />
-        </div>
-        <ng-container *ngIf="form.get('email')?.touched">
-          <p
-            class="error"
-            *ngIf="form.get('email')?.errors?.['emailValidator']"
-          >
-            Email is not valid!
-          </p>
-          <!-- <p
+    <div *ngIf="errorMessage" class="error-message">
+        <h3>
+            {{ errorMessage }}
+        </h3>
+    </div>
+    <div class="container">
+        <div class="data">
+            <form [formGroup]="form" (ngSubmit)="register()">
+                <div class="field">
+                    <label for="email">Email:</label>
+                    <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="email"
+                        formControlName="email"
+                    />
+                </div>
+                <ng-container *ngIf="form.get('email')?.touched">
+                    <p
                         class="error"
-                        *ngIf="form.get('email')?.errors?.['required']"
+                        *ngIf="form.get('email')?.errors?.['emailValidator']"
                     >
-                        Email is required!
-                    </p> -->
-        </ng-container>
-        <div class="field">
-          <label for="username">Username:</label>
-          <input
-            id="username"
-            name="ussername"
-            type="text"
-            placeholder="username"
-            formControlName="username"
-          />
-        </div>
-        <ng-container *ngIf="form.get('username')?.touched">
-          <p class="error" *ngIf="form.get('username')?.errors?.['minlength']">
-            Atleast 4 characters needed!
-          </p>
-          <!-- <p
+                        Email is not valid!
+                    </p>
+                </ng-container>
+                <div class="field">
+                    <label for="username">Username:</label>
+                    <input
+                        id="username"
+                        name="ussername"
+                        type="text"
+                        placeholder="username"
+                        formControlName="username"
+                    />
+                </div>
+                <ng-container *ngIf="form.get('username')?.touched">
+                    <p
                         class="error"
-                        *ngIf="form.get('username')?.errors?.['required']"
+                        *ngIf="form.get('username')?.errors?.['minlength']"
                     >
-                        Username is requred!
-                    </p> -->
-        </ng-container>
-        <ng-container formGroupName="passGroup">
-          <div class="field">
-            <label for="Name">Password:</label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              placeholder="********"
-              formControlName="password"
-            />
-            <ng-container
-              *ngIf="form.get('passGroup')?.get('password')?.touched"
-            >
-              <!-- <p
+                        Atleast 4 characters needed!
+                    </p>
+                </ng-container>
+                <ng-container formGroupName="passGroup">
+                    <div class="field">
+                        <label for="Name">Password:</label>
+                        <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            placeholder="********"
+                            formControlName="password"
+                        />
+                        <ng-container
+                            *ngIf="
+                                form.get('passGroup')?.get('password')?.touched
+                            "
+                        >
+                            <p
                                 class="error"
-                                *ngIf="form.get('passGroup')?.get('password')?.errors?.['required']"
+                                *ngIf="form.get('passGroup')?.get('password')?.errors?.['minlength']"
                             >
-                                Password is reqired
-                            </p> -->
-              <p
+                                Atleast 4 characters needed!
+                            </p>
+                        </ng-container>
+                    </div>
+                    <div class="field">
+                        <label for="repeatPassword">Repeat password:</label>
+                        <input
+                            id="repeatPassword"
+                            name="repeatPassword"
+                            type="password"
+                            placeholder="repeat password"
+                            formControlName="repeatPassword"
+                        />
+                        <ng-container
+                            *ngIf="
+                                form.get('passGroup')?.get('repeatPassword')
+                                    ?.touched
+                            "
+                        >
+                            <p
+                                class="error"
+                                *ngIf="form.get('passGroup')?.errors?.['matchPasswords'] || form.get('passGroup')?.get('repeatPassword')?.errors?.['required']"
+                            >
+                                Repeated pasword does't match password!
+                            </p>
+                        </ng-container>
+                    </div>
+                </ng-container>
+                <button
+                    class="form-btn"
+                    [disabled]="form.invalid"
+                    [style]="{ backgroundColor: form.invalid ? '#9a3501' : '' }"
+                >
+                    Регистрация
+                </button>
+            </form>
+        </div>
+        <div class="img-container">
+            <h4
                 class="error"
-                *ngIf="form.get('passGroup')?.get('password')?.errors?.['minlength']"
-              >
-                Atleast 4 characters needed!
-              </p>
-            </ng-container>
-          </div>
-          <div class="field">
-            <label for="repeatPassword">Repeat password:</label>
-            <input
-              id="repeatPassword"
-              name="repeatPassword"
-              type="password"
-              placeholder="repeat password"
-              formControlName="repeatPassword"
-            />
-            <ng-container
-              *ngIf="form.get('passGroup')?.get('repeatPassword')?.touched"
+                *ngIf="form.invalid ? mandatoryFields : !mandatoryFields"
             >
-              <p
-                class="error"
-                *ngIf="form.get('passGroup')?.errors?.['matchPasswords'] || form.get('passGroup')?.get('repeatPassword')?.errors?.['required']"
-              >
-                Repeated pasword does't match password!
-              </p>
-            </ng-container>
-          </div>
-        </ng-container>
-        <button
-          class="form-btn"
-          [disabled]="form.invalid"
-          [style]="{ backgroundColor: form.invalid ? '#9a3501' : '' }"
-        >
-          Регистрация
-        </button>
-      </form>
-    </div>
-    <div class="img-container">
-      <h4
-        class="error"
-        *ngIf="form.invalid ? mandatoryFields : !mandatoryFields"
-      >
-        Всички полета са задължителни
-      </h4>
+                Всички полета са задължителни
+            </h4>
 
-      <img src="../../../assets/images/bee-guard.png" alt="" />
-      <a routerLink="/users/login">Имам регистрация!</a>
+            <img src="../../../assets/images/bee-guard.png" alt="" />
+            <a routerLink="/users/login">Имам регистрация!</a>
+        </div>
     </div>
-  </div>
 </div>

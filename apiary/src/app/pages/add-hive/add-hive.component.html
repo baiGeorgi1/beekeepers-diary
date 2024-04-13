@@ -1,5 +1,10 @@
 <!-- Add-Hive -->
 <div class="add-hive">
+    <div *ngIf="errorMsg" class="error-message">
+        <h3>
+            {{ errorMsg }}
+        </h3>
+    </div>
     <div class="hive-container">
         <div class="data">
             <form #addForm="ngForm" (ngSubmit)="addHive(addForm)">

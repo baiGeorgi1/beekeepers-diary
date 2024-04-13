@@ -101,3 +101,15 @@ p.error {
     font-weight: 700;
     text-align: center;
 }
+/* ERROR MESSAGE */
+.error-message {
+    position: fixed;
+    right: 1%;
+    padding: 1em;
+    background-color: red;
+    opacity: 0.8;
+    color: rgb(255, 255, 255);
+    border-radius: 10% /50%;
+    box-shadow: -0.5em 0 0.4em rgb(0, 0, 0, 0.5);
+    z-index: 10;
+}

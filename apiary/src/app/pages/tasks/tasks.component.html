@@ -1,4 +1,9 @@
 <div class="tasks">
+    <div *ngIf="errorMessage" class="error-message">
+        <h3>
+            {{ errorMessage }}
+        </h3>
+    </div>
     <div class="container">
         <div class="text">
             <h3>Бележки</h3>
