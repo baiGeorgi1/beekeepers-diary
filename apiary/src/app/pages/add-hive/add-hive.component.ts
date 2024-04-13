@@ -34,7 +34,6 @@ export class AddHiveComponent {
         data.userId = this.userId;
         this.subscribe$ = this.api.createHive(data).subscribe({
             next: () => {
-                alert("Кошерът е добавен успешно");
                 this.isInfo = !this.isInfo;
                 this.isCreateHive = !this.isCreateHive;
                 this.isInfoChanged.emit(this.isInfo);

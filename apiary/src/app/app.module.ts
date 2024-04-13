@@ -11,7 +11,7 @@ import { UserModule } from "./user/user.module";
 import { SharedModule } from "./shared/shared.module";
 import { PagesModule } from "./pages/pages.module";
 
-import { DirectivesModule } from "./directives/directives.module";
+// import { DirectivesModule } from "./directives/directives.module";
 import { AuthenticateComponent } from "./authenticate/authenticate.component";
 import { appInterceptorProvider } from "./app.interceptor";
 
@@ -21,13 +21,13 @@ import { appInterceptorProvider } from "./app.interceptor";
         BrowserModule,
         CoreModule,
         HttpClientModule,
-        DirectivesModule,
+        //    DirectivesModule,
         SharedModule,
         UserModule,
         PagesModule,
         AppRoutingModule,
     ],
-    providers: [appInterceptorProvider], // TODO add AppInterceptorProvider
+    providers: [appInterceptorProvider],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,11 +1,9 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
-import { Title } from "@angular/platform-browser";
-
 import { Router } from "@angular/router";
+
 import { emailValidator } from "src/app/shared/utils/email-validator";
 import { UserService } from "src/app/services/user.service";
-import { ErrorService } from "src/app/core/errorHandling/error.service";
 
 @Component({
     selector: "app-login",
@@ -13,6 +11,7 @@ import { ErrorService } from "src/app/core/errorHandling/error.service";
     styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit, OnDestroy {
+    errorMessage!: string;
     form = this.fb.group({
         email: ["", [Validators.required, emailValidator()]],
         password: ["", [Validators.required]],
@@ -39,8 +38,7 @@ export class LoginComponent implements OnInit, OnDestroy {
                     this.userService.setUser(userData);
                     this.router.navigate(["/dashboard"]);
                 },
-                //TODO
-                error: () => {},
+                error: (err) => (this.errorMessage = err.error.mesage),
             });
     }
     ngOnDestroy(): void {

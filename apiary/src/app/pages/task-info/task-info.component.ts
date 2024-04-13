@@ -34,7 +34,10 @@ export class TaskInfoComponent implements OnInit, OnDestroy {
     }
 
     taskDelete(id: string) {
-        console.log("DEleted", id);
+        this.subscribe$ = this.api.deleteTask(id).subscribe({
+            error: (error) => (this.errorMessage = error.error.mesage),
+            complete: () => this.router.navigate(["users/profile"]),
+        });
     }
     confirm(): void {
         this.isDeleting = true;

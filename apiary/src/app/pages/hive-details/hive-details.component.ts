@@ -39,13 +39,6 @@ export class HiveDetailsComponent implements OnInit, OnDestroy {
             this.subscribe$ = this.api.getHive(this.hiveId).subscribe({
                 next: (hive) => {
                     this.hive = hive;
-
-                    // this.form.setValue({
-                    //     hiveType: this.hive.hiveType,
-                    //     mother: this.hive.mother,
-                    //     brood: this.hive.brood,
-                    //     bees: this.hive.bees,
-                    // });
                 },
                 error: (err) => (this.errorMessage = err.error.message),
             });

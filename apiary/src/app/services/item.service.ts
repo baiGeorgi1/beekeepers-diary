@@ -11,7 +11,6 @@ const { itemURL, taskURL } = environment;
 })
 export class ItemService {
     constructor(private http: HttpClient) {}
-    //todo
 
     getUserHives(): Observable<Hives[]> {
         return this.http.get<Hives[]>(`${itemURL}`);
@@ -66,5 +65,9 @@ export class ItemService {
     }
     getTask(id: string) {
         return this.http.get<Tasks>(`${taskURL}/${id}`);
+    }
+    deleteTask(taskId: string): Observable<unknown> {
+        const URL = `${taskURL}/${taskId}`;
+        return this.http.delete<unknown>(URL);
     }
 }

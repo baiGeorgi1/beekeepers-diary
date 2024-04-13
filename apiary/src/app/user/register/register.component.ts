@@ -11,6 +11,7 @@ import { UserService } from "src/app/services/user.service";
     styleUrls: ["./register.component.css"],
 })
 export class RegisterComponent {
+    errorMessage!: string;
     mandatoryFields: boolean = true;
 
     form = this.fb.group({
@@ -53,9 +54,7 @@ export class RegisterComponent {
                     this.userService.setUser(userData);
                     this.router.navigate(["/dashboard"]);
                 },
-                error: () => {
-                    //todo
-                },
+                error: (err) => (this.errorMessage = err.error.mesage),
             });
     }
 }

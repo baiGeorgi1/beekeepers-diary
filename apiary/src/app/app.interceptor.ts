@@ -60,16 +60,13 @@ export class AppInterceptor implements HttpInterceptor {
                     accessToken &&
                     req.url === itemURL
                 ) {
-                    console.log(req.url);
-
+                    // console.log(req.url);
                     this.router.navigate(["/dashboard"]);
                 } else if (
                     err.status === 404 &&
                     accessToken &&
                     req.url === taskURL
                 ) {
-                    console.log(req.url);
-
                     this.router.navigate(["/users/profile"]);
                 } else {
                     this.errorService.setError(err);

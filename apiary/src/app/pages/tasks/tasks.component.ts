@@ -17,7 +17,8 @@ import { Tasks } from "src/app/types/tasks";
 })
 export class TasksComponent implements OnDestroy {
     @Input() isInfo!: boolean;
-    @Output() @Output() isInfoChanged = new EventEmitter<boolean>();
+    @Output() isInfoChanged = new EventEmitter<boolean>();
+    errorMessage!: string;
 
     task = {} as Tasks;
     subscribe$!: Subscription;
@@ -39,7 +40,7 @@ export class TasksComponent implements OnDestroy {
 
                 this.form.reset();
             },
-            error: () => {},
+            error: (err) => (this.errorMessage = err.error.mesage),
         });
     }
 
