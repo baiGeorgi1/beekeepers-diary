@@ -1,4 +1,17 @@
 <div class="background">
+    <ng-container *ngIf="isDeleting" class="modal">
+        <div class="delete-container">
+            <h2>
+                Сигурни ли сте, че искате да изтриете задачата от:
+                {{ task._createdOn | timePipe }}
+            </h2>
+
+            <button (click)="taskDelete(task._id)" class="delete-btn">
+                Изтрий
+            </button>
+            <button (click)="back()" class="edit-btn">Назад</button>
+        </div>
+    </ng-container>
     <div class="container">
         <div class="text">
             <h3>От: {{ task._createdOn | timePipe }}</h3>
@@ -18,8 +31,12 @@
             >
             </textarea>
 
-            <button routerLink="/users/profile" class="back-btn">Назад</button>
-            <button (click)="taskDelete()" class="delete-btn">Изтрий</button>
+            <button id="back-btn" routerLink="/users/profile" class="back-btn">
+                Назад
+            </button>
+            <button id="delete-btn" (click)="confirm()" class="delete-btn">
+                Изтрий
+            </button>
         </div>
     </div>
 </div>

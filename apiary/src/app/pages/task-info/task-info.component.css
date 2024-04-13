@@ -12,7 +12,8 @@ h2 {
     background-image: url("../../../assets/images/background.jpg");
 }
 
-.container {
+.container,
+.delete-container {
     display: flex;
     gap: 1em;
     justify-content: space-between;
@@ -30,6 +31,9 @@ h2 {
     width: 650px;
     height: auto;
 }
+.delete-container {
+    z-index: 10;
+}
 .container a {
     padding: 1em;
     text-align: center;
@@ -43,6 +47,9 @@ h2 {
     flex-wrap: wrap;
 
     flex: 1 1 auto;
+}
+.modal {
+    z-index: 10;
 }
 
 form {
@@ -68,7 +75,8 @@ textarea {
 .buttons {
     flex: 1 0 100%;
 }
-.back-btn {
+.back-btn,
+.edit-btn {
     width: 30%;
     margin: 1em auto;
     padding: 1em;
@@ -81,7 +89,8 @@ textarea {
     font-weight: 700;
 }
 
-.back-btn:hover {
+.back-btn:hover,
+.edit-btn:hover {
     background-color: green;
     color: white;
     border: 2px solid rgb(58, 237, 58);
