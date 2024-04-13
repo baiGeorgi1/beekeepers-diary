@@ -80,6 +80,9 @@ export class HiveDetailsComponent implements OnInit, OnDestroy {
                 error: (err) => (this.errorMessage = err.error.mesage),
             });
     }
+    confirm(): void {
+        this.editMode = true;
+    }
     onDelete(hiveId: string): void {
         this.editMode = false;
         this.deleteMode = true;
