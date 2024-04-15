@@ -1,4 +1,4 @@
-# Apiary's Diary
+# Beekeeper's Diary
 
 **Apiary's Diary** is my Angular project for the defence of Angular course at SoftUni. The application is created with Softuni's practice server for backend and Angular front-end framework.
 
